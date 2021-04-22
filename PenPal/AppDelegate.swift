@@ -46,7 +46,7 @@ extension AppDelegate {
         else {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             // Look into using UINavigationController
-            initialViewController = storyboard.instantiateViewController(withIdentifier:"LanguagesViewController")
+            initialViewController = storyboard.instantiateViewController(withIdentifier:"LoginViewController")
         }
         
         window?.rootViewController = initialViewController

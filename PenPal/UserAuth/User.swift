@@ -16,10 +16,14 @@ class User : NSObject {
     let firstName : String
     let lastName : String
     let username : String
+    let langSpoken: [String]
+    let langToLearn: [String]
     var dictValue: [String : Any] {
         return ["firstName" : firstName,
                 "lastName" : lastName,
-                "username" : username]
+                "username" : username,
+                "langSpoken": langSpoken,
+                "langToLearn": langToLearn]
     }
     
     //Standard User init()
@@ -28,6 +32,8 @@ class User : NSObject {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
+        self.langSpoken = []
+        self.langToLearn = []
         super.init()
     }
     
@@ -36,12 +42,16 @@ class User : NSObject {
         guard let dict = snapshot.data(),
             let firstName = dict["firstName"] as? String,
             let lastName = dict["lastName"] as? String,
-            let username = dict["username"] as? String
+            let username = dict["username"] as? String,
+            let langSpoken = dict["langSpoken"] as? [String],
+            let langToLearn = dict["langToLearn"] as? [String]
             else { return nil }
         self.uid = snapshot.documentID
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
+        self.langSpoken = langSpoken
+        self.langToLearn = langToLearn
     }
     
     //UserDefaults
@@ -49,13 +59,17 @@ class User : NSObject {
         guard let uid = aDecoder.decodeObject(forKey: "uid") as? String,
             let firstName = aDecoder.decodeObject(forKey: "firstName") as? String,
             let lastName = aDecoder.decodeObject(forKey: "lastName") as? String,
-            let username = aDecoder.decodeObject(forKey: "username") as? String
+            let username = aDecoder.decodeObject(forKey: "username") as? String,
+            let langSpoken = aDecoder.decodeObject(forKey: "langSpoken") as? [String],
+            let langToLearn = aDecoder.decodeObject(forKey: "langToLearn") as? [String]
             else { return nil }
         
         self.uid = uid
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
+        self.langSpoken = langSpoken
+        self.langToLearn = langToLearn
     }
     
     
@@ -87,5 +101,7 @@ extension User: NSCoding {
         aCoder.encode(firstName, forKey: "firstName")
         aCoder.encode(lastName, forKey: "lastName")
         aCoder.encode(username, forKey: "username")
+        aCoder.encode(langSpoken, forKey: "langSpoken")
+        aCoder.encode(langToLearn, forKey: "langToLearn")
     }
 }

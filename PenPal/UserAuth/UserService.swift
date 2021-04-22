@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 
 
 struct UserService {
@@ -14,7 +15,9 @@ struct UserService {
     static func create(_ firUser: FIRUser, username: String, firstName: String, lastName: String, completion: @escaping (User?) -> Void) {
         let userAttrs = ["username": username,
                          "firstName": firstName,
-                         "lastName": lastName]
+                         "lastName": lastName,
+                         "langSpoken": [],
+                         "langToLearn": []] as [String : Any]
         
         let ref = Firestore.firestore().collection("users").document(firUser.uid)
         
@@ -24,6 +27,7 @@ struct UserService {
                 return completion(nil)
             }
             else {
+                print("created user")
                 ref.addSnapshotListener { documentSnapshot, error in
                     guard let snapshot = documentSnapshot else {
                             print("Error fetching document: \(error!)")

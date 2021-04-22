@@ -32,8 +32,14 @@ class CreateUserViewController: UIViewController {
             if identifier == "cancel" {
                 print("Back to Login screen!")
             }
+            else if identifier == "selectLanguagesSegue" {
+                if let destinationVC = segue.destination as? LanguagesViewController {
+                    destinationVC.pageType = "selectingAlreadySpokenLanguages"
+                }
+            }
         }
     }
+    
     
     @IBAction func signUpClicked(_ sender: UIButton) {
         guard let firstName = firstNameTextField.text,

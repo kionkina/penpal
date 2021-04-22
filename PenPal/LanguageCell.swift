@@ -15,35 +15,30 @@ class LanguageCell: UITableViewCell {
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
     
-    var selectedLang: Bool = false
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //let imgUrl = "https://www.unknown.nu/flags/images/\(codeLabel.text)-100"
-        //print(imgUrl)
-        //setImage(from: imgUrl)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        updateDisplaySelected()
-    }
-
-    func toggleSelected() {
-        self.selectedLang = !self.selectedLang
-        self.updateDisplaySelected()
-    }
-    
-    func updateDisplaySelected() {
-        if self.selectedLang {
+        if self.isSelected {
             self.accessoryType = .checkmark
-        }
-        else {
+        } else {
             self.accessoryType = .none
         }
+       
+    }
+
+    
+    
+    func configure(isSelected: Bool, name: String, imgUrl: String) {
+        //self.accessoryType = isSelected ? .checkmark : .none
+        self.languageLabel.text = name
+        self.setImage(from: imgUrl)
+        self.codeLabel.text = ""
+        self.selectionStyle = .none
     }
     
     func setImage(from url: String) {
@@ -55,8 +50,6 @@ class LanguageCell: UITableViewCell {
 
             let image = UIImage(data: imageData)
             DispatchQueue.main.async {
-                print("img: ")
-                print(image)
                 self.imgView.image = image!
             }
         }

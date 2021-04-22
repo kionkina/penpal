@@ -28,7 +28,7 @@ struct AuthService {
                 signUpErrors(error: error, controller: controller)
                 return completion(nil)
             }
-            
+            print("done creating in createUser")
             return completion(Auth.auth().currentUser)
         }
     }
