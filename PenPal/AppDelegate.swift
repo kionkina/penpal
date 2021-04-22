@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        TranslationManager.shared.fetchSupportedLanguages { (fetchedLanguages) in
+            fetchedLanguages ? print("Languages have been fetched!") : print("Languages could not be fetched...")
+        }
+        
         let db = Firestore.firestore()
         configureInitialRootViewController(for: window)
         return true

@@ -13,9 +13,10 @@ import UIKit
 class LanguagesViewController: UIViewController  {
     
     struct TranslationLanguageCell {
-        var name: String?
-        var selected: Bool
+        var code: String
+        var name: String
         var imgUrl: String
+        var selected: Bool
     }
 
     // MARK: - IBOutlet Properties
@@ -51,14 +52,16 @@ class LanguagesViewController: UIViewController  {
     // MARK: - Default Methods
     
     func loadLanguages() {
-        print("in load lang")
-        print(self.languages.count)
-        for lang in languages {
-            let imgUrl = "https://www.unknown.nu/flags/images/\(lang.code!)-100"
+        print("all codes: ")
+        print(TranslationManager.shared.languagenCodes)
+        for langCode in TranslationManager.shared.languagenCodes {
+            let langData = TranslationManager.shared.langugaesDict[langCode]
             if (self.pageType == "selectingAlreadySpokenLanguages") {
-                self.alreadySpoken.append(TranslationLanguageCell(name: lang.name, selected: false, imgUrl: imgUrl))
+                print(langCode)
+                self.alreadySpoken.append(TranslationLanguageCell(code: langCode, name: langData!.name!, imgUrl: langData!.imgUrl!, selected: false))
+                print("Appended")
             } else {
-                self.toLearn.append(TranslationLanguageCell(name: lang.name, selected: false, imgUrl: imgUrl))
+                self.toLearn.append(TranslationLanguageCell(code: langCode, name: langData!.name!, imgUrl: langData!.imgUrl!, selected: false))
             }
         }
         self.tableView.reloadData()
@@ -124,7 +127,7 @@ func checkForLanguagesExistence() {
             // Check if user wants to fetch supported languages.
             if actionIndex == 0 {
                 if (TranslationManager.shared.supportedLanguages.count == 0) {
-                    self.fetchSupportedLanguages()
+                    //self.fetchSupportedLanguages()
                 }
             }
         }
@@ -134,43 +137,12 @@ func checkForLanguagesExistence() {
             // Check if user wants to fetch supported languages.
             if actionIndex == 0 {
                 if (TranslationManager.shared.supportedLanguages.count == 0) {
-                    self.fetchSupportedLanguages()
+                    //self.fetchSupportedLanguages()
                 }
             }
         }
     }
-
 }
-
-func fetchSupportedLanguages() {
-        // Show a "Please wait..." alert.
-        self.alertCollection.presentActivityAlert(withTitle: "One moment", message: "Fetching languages...") { (presented) in
-     
-            if presented {
-                TranslationManager.shared.fetchSupportedLanguages(completion: { (success) in
-                    // Dismiss the alert.
-                    self.alertCollection.dismissAlert(completion: nil)
-     
-                    // Check if supported languages were fetched successfully or not.
-                    if success {
-                        print("success!")
-                        // Display languages in the tableview.
-                        DispatchQueue.main.async { [unowned self] in
-                            self.languages = TranslationManager.shared.allLanguages
-                            self.loadLanguages()
-                        }
-                    } else {
-                        // Show an alert saying that something went wrong.
-                        self.alertCollection.presentSingleButtonAlert(withTitle: "Supported Languages", message: "Oops! It seems that something went wrong and supported languages cannot be fetched.", buttonTitle: "OK", actionHandler: {
-     
-                        })
-                    }
-     
-                })
-            }
-     
-        }
-    }
 }
 
 
@@ -178,7 +150,7 @@ func fetchSupportedLanguages() {
 extension LanguagesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        if let cell = tableView.cellForRow(at: indexPath) as? LanguageCell {
+        if (tableView.cellForRow(at: indexPath) as? LanguageCell) != nil {
             
             let index: Int = searching ? searchTerms[indexPath.row] : indexPath.row
             if (self.pageType == "selectingAlreadySpokenLanguages") {
@@ -192,7 +164,7 @@ extension LanguagesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        if let cell = tableView.cellForRow(at: indexPath) as? LanguageCell {
+        if (tableView.cellForRow(at: indexPath) as? LanguageCell) != nil {
             
             let index: Int = searching ? searchTerms[indexPath.row] : indexPath.row
             
@@ -230,7 +202,7 @@ extension LanguagesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "idLanguageCell", for: indexPath) as? LanguageCell else { return UITableViewCell() }
 
        
-        var language = TranslationLanguageCell(name: "", selected: false, imgUrl: "")
+        var language = TranslationLanguageCell(code:"", name: "", imgUrl: "", selected: false)
         
         if (self.pageType == "selectingAlreadySpokenLanguages") {
             if (self.searching) {
@@ -247,7 +219,7 @@ extension LanguagesViewController: UITableViewDataSource {
         }
         
 
-        cell.configure(isSelected: language.selected, name: language.name!, imgUrl: language.imgUrl)
+        cell.configure(name: language.name, imgUrl: language.imgUrl)
         
         print("Setting cell to \(language.selected)")
         
@@ -280,8 +252,8 @@ extension LanguagesViewController: UITableViewDataSource {
                 // Filter for spoken languages
                 let spoken = alreadySpoken.filter({ $0.selected == true })
                 // Reduce object to array of names
-                let spokenLangNames: [String] = spoken.map{ $0.name! }
-                print(spokenLangNames)
+                let spokenLangCodes: [String] = spoken.map{ $0.code }
+                print(spokenLangCodes)
                 
             
                 
@@ -289,13 +261,18 @@ extension LanguagesViewController: UITableViewDataSource {
                 // Filter for selected languages
                 let learn = toLearn.filter({ $0.selected == true })
                 // Reduce to array of lang names
-                let toLearnLangNames: [String] = learn.map { $0.name! }
-                DBViewController.updateLanugaes(alreadySpoken: spokenLangNames, toLearn: toLearnLangNames)
+                print("SPOKEN: ")
+                print(spokenLangCodes)
+
+                let toLearnLangCodes: [String] = learn.map { $0.code }
+                print("toLEARN")
+                print(toLearnLangCodes)
                 
-                UserDefaults.standard.set(spokenLangNames, forKey: "langSpoken")
+                DBViewController.updateLanugaes(alreadySpoken: spokenLangCodes, toLearn: toLearnLangCodes)
                 
-                UserDefaults.standard.setValue(toLearnLangNames, forKey: "langToLearn")
-            
+                UserDefaults.standard.set(spokenLangCodes, forKey: "langSpoken")
+                UserDefaults.standard.setValue(toLearnLangCodes, forKey: "langToLearn")
+               
                 let initialViewController = UIStoryboard.initialViewController(for: .main)
                 self.view.window?.rootViewController = initialViewController
                 self.view.window?.makeKeyAndVisible()
@@ -321,7 +298,7 @@ extension LanguagesViewController: UISearchBarDelegate {
     }
     
     if (self.pageType == "selectingAlreadySpokenLanguages") {
-        for lang in self.alreadySpoken where (lang.name?.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
+        for lang in self.alreadySpoken where (lang.name.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
             let index = alreadySpoken.firstIndex(where: { (currLang) -> Bool in
                 currLang.name == lang.name // test if this is the item you're looking for
             })
@@ -348,7 +325,7 @@ extension LanguagesViewController: UISearchBarDelegate {
         }
     }
     else {
-        for lang in self.toLearn where (lang.name?.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
+        for lang in self.toLearn where (lang.name.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
             let index = toLearn.firstIndex(where: { (currLang) -> Bool in
                 currLang.name == lang.name // test if this is the item you're looking for
             })

@@ -33,7 +33,7 @@ class LanguageCell: UITableViewCell {
 
     
     
-    func configure(isSelected: Bool, name: String, imgUrl: String) {
+    func configure(name: String, imgUrl: String) {
         //self.accessoryType = isSelected ? .checkmark : .none
         self.languageLabel.text = name
         self.setImage(from: imgUrl)

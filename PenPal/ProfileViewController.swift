@@ -18,24 +18,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var learningStackView: UIStackView!
     @IBOutlet weak var spokenStackView: UIStackView!
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadImages()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nameLabel.text = "\(User.current.firstName) \(User.current.lastName)"
-        if TranslationManager.shared.allLanguages.count == 0 {
-            TranslationManager.shared.fetchSupportedLanguages(completion: { (success) in
-                if success {
-                    DispatchQueue.main.async { [unowned self] in
-                        self.loadImages()
-                    }
-                   print("success")
-                }
-            })
-        }
+        self.loadImages()
         //        usernameLabel.text = User.current.username
                 
-                authHandle = AuthService.authListener(viewController: self)
+        authHandle = AuthService.authListener(viewController: self)
     }
     
     func loadImages(){
@@ -43,13 +37,12 @@ class ProfileViewController: UIViewController {
         print("in load imgs")
         var xcor: Int = 0
         var ycor: Int = 0
-        for lang in User.current.langSpoken {
+        
+        
+        for langCode in User.current.langSpoken {
             let imgView = UIImageView()
-            let code = TranslationManager.shared.allLanguages.filter({$0.name == lang})[0].code
+            let langData = TranslationManager.shared.langugaesDict[langCode]
             
-            let imgUrl = "https://www.unknown.nu/flags/images/\(code!)-100"
-            print(imgUrl)
-            setImage(imgView: imgView, from: imgUrl)
              
             if (xcor > 90 ) {
                 xcor = 0
@@ -58,7 +51,7 @@ class ProfileViewController: UIViewController {
             
             imgView.frame = CGRect(x: xcor, y: ycor, width: 40, height: 20)
 
-            self.setImage(imgView: imgView, from: imgUrl)
+            self.setImage(imgView: imgView, from: langData!.imgUrl!)
             spokenStackView.addSubview(imgView)
             
             xcor += 50
@@ -66,13 +59,11 @@ class ProfileViewController: UIViewController {
         
         xcor = 0
         ycor = 0
-        for lang in User.current.langToLearn {
+        for langCode in User.current.langToLearn {
             let imgView = UIImageView()
-            let code = TranslationManager.shared.allLanguages.filter({$0.name == lang})[0].code
-            
-            let imgUrl = "https://www.unknown.nu/flags/images/\(code!)-100"
-            print(imgUrl)
-            setImage(imgView: imgView, from: imgUrl)
+            let langData = TranslationManager.shared.langugaesDict[langCode]
+
+
              
             if (xcor > 90 ) {
                 xcor = 0
@@ -81,7 +72,7 @@ class ProfileViewController: UIViewController {
             
             imgView.frame = CGRect(x: xcor, y: ycor, width: 40, height: 20)
 
-            self.setImage(imgView: imgView, from: imgUrl)
+            self.setImage(imgView: imgView, from: langData!.imgUrl!)
             learningStackView.addSubview(imgView)
             
             xcor += 50
