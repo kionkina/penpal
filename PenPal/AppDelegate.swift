@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TranslationManager.shared.fetchSupportedLanguages { (fetchedLanguages) in
             fetchedLanguages ? print("Languages have been fetched!") : print("Languages could not be fetched...")
         }
+        LocationManager.shared.getCountriesandStates()
         
         let db = Firestore.firestore()
         configureInitialRootViewController(for: window)

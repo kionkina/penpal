@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FlagsCell" rowHeight="200" id="R19-5R-7Lm" customClass="FlagsCell" customModule="PenPal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R19-5R-7Lm" id="SH3-W2-Mmz">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w16-HQ-izZ">
+                        <rect key="frame" x="46" y="8" width="90" height="157"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="157" id="JGo-Ce-oNT"/>
+                            <constraint firstAttribute="width" constant="90" id="mBs-fS-h1I"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5sG-0C-Xh7">
+                        <rect key="frame" x="228" y="8" width="90" height="157"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="CAr-Vb-3xl"/>
+                            <constraint firstAttribute="height" constant="157" id="CD2-2M-Dl1"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5sG-0C-Xh7" firstAttribute="top" secondItem="SH3-W2-Mmz" secondAttribute="top" constant="8" id="C5k-kA-Uhg"/>
+                    <constraint firstItem="w16-HQ-izZ" firstAttribute="leading" secondItem="SH3-W2-Mmz" secondAttribute="leading" constant="46" id="ITO-ED-AMS"/>
+                    <constraint firstAttribute="bottom" secondItem="5sG-0C-Xh7" secondAttribute="bottom" constant="35" id="O4t-4W-FqF"/>
+                    <constraint firstItem="5sG-0C-Xh7" firstAttribute="leading" secondItem="SH3-W2-Mmz" secondAttribute="leading" constant="228" id="W21-SM-Lif"/>
+                    <constraint firstItem="w16-HQ-izZ" firstAttribute="top" secondItem="SH3-W2-Mmz" secondAttribute="top" constant="8" id="gA5-CY-2xH"/>
+                    <constraint firstAttribute="bottom" secondItem="w16-HQ-izZ" secondAttribute="bottom" constant="35" id="lXc-CZ-pEn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="learningStackView" destination="5sG-0C-Xh7" id="ry1-ai-ORz"/>
+                <outlet property="spokenStackView" destination="w16-HQ-izZ" id="pAV-9M-R7k"/>
+            </connections>
+            <point key="canvasLocation" x="74.637681159420296" y="77.678571428571431"/>
+        </tableViewCell>
+    </objects>
+</document>

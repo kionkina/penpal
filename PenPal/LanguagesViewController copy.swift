@@ -24,18 +24,15 @@ class LanguagesViewController: UIViewController  {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     
-    var languages = [TranslationManager.TranslationLanguage]()
-    var alreadySpoken = [TranslationLanguageCell]()
-    var toLearn = [TranslationLanguageCell]()
+    var selectedLanguages = [TranslationLanguageCell]()
+
     var pageType: String = "selectingAlreadySpokenLanguages"
     var searching: Bool = false
     // Indecies of search terms
     var searchTerms: [Int] = []
-    
-    // MARK: - Properties
-    
-    var alertCollection: GTAlertCollection!
    
+    public var onDoneEditing: (() -> ())?
+      
     // MARK: - Prepare for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("IN PREPARE FOR SEGUE")
@@ -43,7 +40,6 @@ class LanguagesViewController: UIViewController  {
             if identifier == "selectLanguagesSegue" {
                 if let destinationVC = segue.destination as? LanguagesViewController {
                     destinationVC.pageType = "selectingLanguagesToLearn"
-                    destinationVC.alreadySpoken = self.alreadySpoken
                 }
             }
         }
@@ -52,27 +48,42 @@ class LanguagesViewController: UIViewController  {
     // MARK: - Default Methods
     
     func loadLanguages() {
-        print("all codes: ")
-        print(TranslationManager.shared.languagenCodes)
+        //print("all codes: ")
+        //print(TranslationManager.shared.languagenCodes)
         for langCode in TranslationManager.shared.languagenCodes {
             let langData = TranslationManager.shared.langugaesDict[langCode]
-            if (self.pageType == "selectingAlreadySpokenLanguages") {
-                print(langCode)
-                self.alreadySpoken.append(TranslationLanguageCell(code: langCode, name: langData!.name!, imgUrl: langData!.imgUrl!, selected: false))
-                print("Appended")
+            var selected: Bool = false
+            print("in load languages")
+            
+            if pageType == "selectingAlreadySpokenLanguages" {
+                print("selecting from: \(User.current.langSpoken)")
+                selected = User.current.langSpoken.contains(langCode)
             } else {
-                self.toLearn.append(TranslationLanguageCell(code: langCode, name: langData!.name!, imgUrl: langData!.imgUrl!, selected: false))
+                print("selecting from: \(User.current.langToLearn)")
+                selected = User.current.langToLearn.contains(langCode)
             }
+            
+            selectedLanguages.append(TranslationLanguageCell(code: langCode, name: langData!.name!, imgUrl: langData!.imgUrl!, selected: selected))
         }
+        print("reloading")
+       
         self.tableView.reloadData()
+
     }
     
     
     override func viewDidLoad() {
             super.viewDidLoad()
+            self.searching = false
             self.tableView.allowsMultipleSelection = true
             self.tableView.allowsMultipleSelectionDuringEditing = true
-            self.languages = TranslationManager.shared.allLanguages
+        
+        if self.pageType == "selectingAlreadySpokenLanguages" {
+            self.title = "Select Languages Already Spoken"
+        } else {
+            self.title = "Select Languages to Learn"
+        }
+            
             self.loadLanguages()
         // Do any additional setup after loading the view.
     }
@@ -81,7 +92,6 @@ class LanguagesViewController: UIViewController  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        alertCollection = GTAlertCollection(withHostViewController: self)
         configureTableView()
     }
     
@@ -93,11 +103,14 @@ class LanguagesViewController: UIViewController  {
     }
     
     deinit {
-        alertCollection = nil
+        
     }
     
+    // MARK: - Unwind
     
-    
+    @IBAction func unwindToLang(_ segue: UIStoryboardSegue) {
+        print("Returned to Login Screen!")
+    }
     
     // MARK: - Custom Methods
     
@@ -120,7 +133,7 @@ func checkForLanguagesExistence() {
     // TranslationManager shared instance.
     // If it's zero, no languages have been fetched, so ask user
     // if they want to fetch them now.
-
+/*
     if (self.pageType == "selectingAlreadySpokenLanguages") {
         alertCollection.presentAlert(withTitle: "Getting to Know You", message: "Before we get started, we'd like to get to know you! Can you select the languages that you speak?", buttonTitles: ["Let's go!", "Not now"], cancelButtonIndex: 1, destructiveButtonIndices: nil) { (actionIndex) in
 
@@ -141,9 +154,10 @@ func checkForLanguagesExistence() {
                 }
             }
         }
-    }
+    }*/
+ }
 }
-}
+
 
 
 // MARK: - UITableViewDelegate
@@ -153,12 +167,9 @@ extension LanguagesViewController: UITableViewDelegate {
         if (tableView.cellForRow(at: indexPath) as? LanguageCell) != nil {
             
             let index: Int = searching ? searchTerms[indexPath.row] : indexPath.row
-            if (self.pageType == "selectingAlreadySpokenLanguages") {
-                alreadySpoken[index].selected = !alreadySpoken[index].selected
-            }
-            else {
-                toLearn[index].selected = !toLearn[index].selected
-            }
+            
+            selectedLanguages[index].selected = !selectedLanguages[index].selected
+
         }
     }
     
@@ -168,12 +179,8 @@ extension LanguagesViewController: UITableViewDelegate {
             
             let index: Int = searching ? searchTerms[indexPath.row] : indexPath.row
             
-            if (self.pageType == "selectingAlreadySpokenLanguages") {
-                alreadySpoken[index].selected = !alreadySpoken[index].selected
-            }
-            else {
-                toLearn[index].selected = !toLearn[index].selected
-            }
+            selectedLanguages[index].selected = !selectedLanguages[index].selected
+            
         }
     }
 }
@@ -191,10 +198,8 @@ extension LanguagesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if (self.pageType == "selectingAlreadySpokenLanguages") {
-            return self.searching ? self.searchTerms.count : self.alreadySpoken.count
-        }
-        return self.searching ? self.searchTerms.count : self.toLearn.count
+
+        return self.searching ? self.searchTerms.count : self.selectedLanguages.count
     }
     
     
@@ -203,27 +208,27 @@ extension LanguagesViewController: UITableViewDataSource {
 
        
         var language = TranslationLanguageCell(code:"", name: "", imgUrl: "", selected: false)
-        
-        if (self.pageType == "selectingAlreadySpokenLanguages") {
-            if (self.searching) {
-                language = self.alreadySpoken[searchTerms[indexPath.row]]
-            } else {
-                language =  self.alreadySpoken[indexPath.row]
-            }
-        } else {
-            if (self.searching) {
-                language = self.toLearn[searchTerms[indexPath.row]]
-            } else {
-                language = self.toLearn[indexPath.row]
-            }
-        }
-        
 
+        if (self.searching) {
+            language = self.selectedLanguages[searchTerms[indexPath.row]]
+        } else {
+            language =  self.selectedLanguages[indexPath.row]
+        }
+      
+        
         cell.configure(name: language.name, imgUrl: language.imgUrl)
         
         print("Setting cell to \(language.selected)")
-        
+        if (language.code == "ar") {
+            print("at ar!!")
+            print(language.selected)
+        }
+
         cell.setSelected(language.selected, animated: false)
+        if (language.selected) {
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition:  .none)
+            //cell.accessoryType = .checkmark
+        }
         
         return cell
     }
@@ -233,53 +238,97 @@ extension LanguagesViewController: UITableViewDataSource {
         return 80.0
     }
     
-    // MARK: - IBOutlets
+    // MARK: - IBAction
         @IBAction func buttonOneTouched(_ sender: UIButton) {
             
-            ("button pressed!")
-            print(self.pageType)
+           
             
             if (self.pageType == "selectingAlreadySpokenLanguages") {
-                //Add selected to alreadySpoken
-                self.performSegue(withIdentifier: "selectLanguagesSegue", sender: self)
-            
+                print("pagetype is already spoken")
+                
+                //DB CALL on callback perform segueue
+                let spoken = self.selectedLanguages.filter({ $0.selected == true })
+                // Reduce object to array of names
+                let spokenLangCodes: [String] = spoken.map{ $0.code }
+                
+                if (spokenLangCodes.count == 0){
+                    displayNoChoiceAlert(message: "Please choose at least one language")
+                }
+                else if (spokenLangCodes.count > 10){
+                    displayNoChoiceAlert(message: "Impressive! But please choose no more than 10 languages")
+                }
+                else {
+                
+               
+                
+                //case 1: we are setting initial fields and moving to next VC
+                    if (self.onDoneEditing == nil) {
+                        User.current.langSpoken = spokenLangCodes
+                        self.performSegue(withIdentifier: "selectLanguagesSegue", sender: self)
+                    }
+                    else {
+                        //case 2: we are editing and call the closure from parent
+                        print("done editing! about to set spoken!")
+                        print("updating DB... ")
+                        if (User.current.langSpoken != spokenLangCodes){
+                            User.current.langSpoken = spokenLangCodes
+                            DBViewController.setSpoken {
+                                UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langSpoken")
+                                self.onDoneEditing!()
+                        }
+                    }
+                        else {
+                            print("no change")
+                            self.onDoneEditing!()
+                        }
+                    }
+                }
             }
             else if (self.pageType == "selectingLanguagesToLearn") {
                 //DB CALL
-                
-                print("ready for DB")
-                print("already spoken: ")
-                // Filter for spoken languages
-                let spoken = alreadySpoken.filter({ $0.selected == true })
-                // Reduce object to array of names
-                let spokenLangCodes: [String] = spoken.map{ $0.code }
-                print(spokenLangCodes)
-                
-            
-                
-                print("toLearn: ")
-                // Filter for selected languages
-                let learn = toLearn.filter({ $0.selected == true })
+                print("pagetype is to learn")
+                let learn = selectedLanguages.filter({ $0.selected == true })
                 // Reduce to array of lang names
-                print("SPOKEN: ")
-                print(spokenLangCodes)
 
                 let toLearnLangCodes: [String] = learn.map { $0.code }
-                print("toLEARN")
-                print(toLearnLangCodes)
                 
-                DBViewController.updateLanugaes(alreadySpoken: spokenLangCodes, toLearn: toLearnLangCodes)
+                print("toLearnCodes: ", toLearnLangCodes)
                 
-                UserDefaults.standard.set(spokenLangCodes, forKey: "langSpoken")
-                UserDefaults.standard.setValue(toLearnLangCodes, forKey: "langToLearn")
-               
-                let initialViewController = UIStoryboard.initialViewController(for: .main)
-                self.view.window?.rootViewController = initialViewController
-                self.view.window?.makeKeyAndVisible()
+                if (toLearnLangCodes.count == 0) {
+                    displayNoChoiceAlert(message: "Please choose at least one language")
+                }
+                else if (toLearnLangCodes.count > 10){
+                    displayNoChoiceAlert(message: "We love the ambition, but please choose no more than 10 languages")
+                }
+                
 
+                if (self.onDoneEditing == nil) {
+                    User.current.langToLearn = toLearnLangCodes
+                    self.performSegue(withIdentifier: "selectLocationSegue", sender: self)
+                }
+                else {
+                    if (User.current.langToLearn != toLearnLangCodes){
+                        User.current.langToLearn = toLearnLangCodes
+                        DBViewController.setLearning {
+                            UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langToLearn")
+                            self.onDoneEditing!()
+                        }
+                    }
+                    else {
+                        //no changes
+                        print("no change")
+                        self.onDoneEditing!()
+                    }
+                }
             }
             
         }
+    
+    func displayNoChoiceAlert(message: String){
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }
 
@@ -297,55 +346,40 @@ extension LanguagesViewController: UISearchBarDelegate {
         return
     }
     
-    if (self.pageType == "selectingAlreadySpokenLanguages") {
-        for lang in self.alreadySpoken where (lang.name.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
-            let index = alreadySpoken.firstIndex(where: { (currLang) -> Bool in
-                currLang.name == lang.name // test if this is the item you're looking for
-            })
-            temp.append(index!)
-        }
-        
-        // Keeping track of selected indecies in new list
-        var selectedRows: [IndexPath] = []
-        for (ind, element) in temp.enumerated() {
-            if (alreadySpoken[element].selected) {
-                let indexPath = IndexPath(row: ind, section: 0)
-                selectedRows.append(indexPath)
-            }
-        }
-        
-        self.searchTerms = temp
-        self.searching = true
-        tableView.reloadData()
-
-        DispatchQueue.main.async {
-            selectedRows.forEach { selectedRow in
-                self.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
-            }
+    for lang in self.selectedLanguages where (lang.name.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
+        let index = selectedLanguages.firstIndex(where: { (currLang) -> Bool in
+            currLang.name == lang.name // test if this is the item you're looking for
+        })
+        temp.append(index!)
+    }
+    
+    // Keeping track of selected indecies in new list
+    var selectedRows: [IndexPath] = []
+    for (ind, element) in temp.enumerated() {
+        if (selectedLanguages[element].selected) {
+            let indexPath = IndexPath(row: ind, section: 0)
+            selectedRows.append(indexPath)
         }
     }
-    else {
-        for lang in self.toLearn where (lang.name.lowercased().range(of: (searchBar.text?.lowercased())!) != nil) {
-            let index = toLearn.firstIndex(where: { (currLang) -> Bool in
-                currLang.name == lang.name // test if this is the item you're looking for
-            })
-            temp.append(index!)
+    
+    self.searchTerms = temp
+    self.searching = true
+    tableView.reloadData()
+
+    DispatchQueue.main.async {
+        selectedRows.forEach { selectedRow in
+            self.tableView.selectRow(at: selectedRow, animated: false, scrollPosition: .none)
         }
-        self.searchTerms = temp
-        self.searching = true
-        tableView.reloadData()
-        
     }
   }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText == "" {
             print("changed to empty")
-            self.languages = TranslationManager.shared.allLanguages
             self.searching = false
             
             var selectedRows: [IndexPath] = []
-            let cells = (self.pageType == "selectingAlreadySpokenLanguages") ? alreadySpoken : toLearn
+            let cells = self.selectedLanguages
             
            
             for (ind, cell) in cells.enumerated() {

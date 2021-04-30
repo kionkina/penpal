@@ -13,7 +13,25 @@
 		9A58364E262A2EEF00DC3451 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A58364C262A2EEF00DC3451 /* LanguageCell.swift */; };
 		9A583651262A2F0A00DC3451 /* GTAlertCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */; };
 		9A58368B262A961400DC3451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A58368A262A961300DC3451 /* GoogleService-Info.plist */; };
+		9A589DB82637192500585328 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DB72637192500585328 /* ProfileCell.xib */; };
+		9A589DBD26371B0A00585328 /* NameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DBC26371B0A00585328 /* NameCell.xib */; };
+		9A589DC026371B6C00585328 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DBF26371B6C00585328 /* LocationCell.xib */; };
+		9A589DC426371BBD00585328 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DC326371BBD00585328 /* DescriptionCell.xib */; };
+		9A589DC726371BF400585328 /* LanguageLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DC626371BF400585328 /* LanguageLabelCell.xib */; };
+		9A589DCC26371C2000585328 /* FlagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DCB26371C2000585328 /* FlagsCell.xib */; };
+		9A589DD026371F0E00585328 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DCF26371F0E00585328 /* ProfileCell.swift */; };
+		9A589DD326371F4B00585328 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DD226371F4B00585328 /* LocationCell.swift */; };
+		9A589DD726371F5600585328 /* NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DD626371F5600585328 /* NameCell.swift */; };
+		9A589DDA26371F7100585328 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DD926371F7100585328 /* DescriptionCell.swift */; };
+		9A589DDD26371F8400585328 /* LanguageLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DDC26371F8400585328 /* LanguageLabelCell.swift */; };
+		9A589DE026371FE500585328 /* FlagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DDF26371FE500585328 /* FlagsCell.swift */; };
+		9A589DE42637469800585328 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DE32637469700585328 /* LocationManager.swift */; };
+		9A589DE72637470000585328 /* HomepageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DE62637470000585328 /* HomepageViewController.swift */; };
+		9A589DEC263753F100585328 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DEB263753F000585328 /* SelectLocationViewController.swift */; };
+		9A589DF32637583500585328 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DF12637583500585328 /* CountryTableViewCell.swift */; };
+		9A589E762639D4D700585328 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589E752639D4D700585328 /* UserCell.swift */; };
 		9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81DD22262FA74F00C38F4F /* DBViewController.swift */; };
+		9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */; };
 		9AEA1D0025E5DAC000C329C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */; };
 		9AEA1D0425E5DAC000C329C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0325E5DAC000C329C8 /* ViewController.swift */; };
 		9AEA1D0925E5DAC400C329C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0825E5DAC400C329C8 /* Assets.xcassets */; };
@@ -42,7 +60,25 @@
 		9A58364C262A2EEF00DC3451 /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTAlertCollection.swift; sourceTree = "<group>"; };
 		9A58368A262A961300DC3451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A589DB72637192500585328 /* ProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		9A589DBC26371B0A00585328 /* NameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameCell.xib; sourceTree = "<group>"; };
+		9A589DBF26371B6C00585328 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
+		9A589DC326371BBD00585328 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
+		9A589DC626371BF400585328 /* LanguageLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageLabelCell.xib; sourceTree = "<group>"; };
+		9A589DCB26371C2000585328 /* FlagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlagsCell.xib; sourceTree = "<group>"; };
+		9A589DCF26371F0E00585328 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		9A589DD226371F4B00585328 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		9A589DD626371F5600585328 /* NameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCell.swift; sourceTree = "<group>"; };
+		9A589DD926371F7100585328 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		9A589DDC26371F8400585328 /* LanguageLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLabelCell.swift; sourceTree = "<group>"; };
+		9A589DDF26371FE500585328 /* FlagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagsCell.swift; sourceTree = "<group>"; };
+		9A589DE32637469700585328 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		9A589DE62637470000585328 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomepageViewController.swift; path = PenPal/HomepageViewController.swift; sourceTree = SOURCE_ROOT; };
+		9A589DEB263753F000585328 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		9A589DF12637583500585328 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
+		9A589E752639D4D700585328 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = PenPal/UserCell.swift; sourceTree = SOURCE_ROOT; };
 		9A81DD22262FA74F00C38F4F /* DBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
+		9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9AEA1CFC25E5DAC000C329C8 /* PenPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AEA1D0325E5DAC000C329C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +154,33 @@
 			path = Translation;
 			sourceTree = "<group>";
 		};
+		9A589DE22637467A00585328 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		9A589DF0263757E200585328 /* ProfileCells */ = {
+			isa = PBXGroup;
+			children = (
+				9A589DBC26371B0A00585328 /* NameCell.xib */,
+				9A589DD626371F5600585328 /* NameCell.swift */,
+				9A589DC326371BBD00585328 /* DescriptionCell.xib */,
+				9A589DD926371F7100585328 /* DescriptionCell.swift */,
+				9A589DC626371BF400585328 /* LanguageLabelCell.xib */,
+				9A589DDC26371F8400585328 /* LanguageLabelCell.swift */,
+				9A589DCB26371C2000585328 /* FlagsCell.xib */,
+				9A589DDF26371FE500585328 /* FlagsCell.swift */,
+				9A589DB72637192500585328 /* ProfileCell.xib */,
+				9A589DCF26371F0E00585328 /* ProfileCell.swift */,
+				9A589DBF26371B6C00585328 /* LocationCell.xib */,
+				9A589DD226371F4B00585328 /* LocationCell.swift */,
+			);
+			name = ProfileCells;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		9AEA1CF325E5DABF00C329C8 = {
 			isa = PBXGroup;
 			children = (
@@ -139,14 +202,22 @@
 		9AEA1CFE25E5DAC000C329C8 /* PenPal */ = {
 			isa = PBXGroup;
 			children = (
+				9A589DF0263757E200585328 /* ProfileCells */,
+				9A589DE22637467A00585328 /* LocationManager */,
 				03A2B2B125F62249005239B1 /* Storyboards */,
 				03A2B2AE25F62016005239B1 /* UserAuth */,
 				9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */,
+				9A589E752639D4D700585328 /* UserCell.swift */,
 				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
+				9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */,
 				9AEA1D2525E5DE6000C329C8 /* Storyboard+Utility .swift */,
 				9AEA1D2625E5DE6000C329C8 /* ViewController+Utility.swift */,
 				9AEA1D0325E5DAC000C329C8 /* ViewController.swift */,
 				9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */,
+				9A589DEB263753F000585328 /* SelectLocationViewController.swift */,
+				9A589DE62637470000585328 /* HomepageViewController.swift */,
+				9A589DE32637469700585328 /* LocationManager.swift */,
+				9A589DF12637583500585328 /* CountryTableViewCell.swift */,
 				9AEA1D0825E5DAC400C329C8 /* Assets.xcassets */,
 				9AEA1D0A25E5DAC400C329C8 /* LaunchScreen.storyboard */,
 				9AEA1D0D25E5DAC400C329C8 /* Info.plist */,
@@ -228,8 +299,14 @@
 			files = (
 				9AEA1D1925E5DE3E00C329C8 /* Login.storyboard in Resources */,
 				9AEA1D1625E5DE3800C329C8 /* Main.storyboard in Resources */,
+				9A589DCC26371C2000585328 /* FlagsCell.xib in Resources */,
 				9AEA1D0C25E5DAC400C329C8 /* LaunchScreen.storyboard in Resources */,
+				9A589DB82637192500585328 /* ProfileCell.xib in Resources */,
+				9A589DC426371BBD00585328 /* DescriptionCell.xib in Resources */,
+				9A589DBD26371B0A00585328 /* NameCell.xib in Resources */,
+				9A589DC726371BF400585328 /* LanguageLabelCell.xib in Resources */,
 				9AEA1D0925E5DAC400C329C8 /* Assets.xcassets in Resources */,
+				9A589DC026371B6C00585328 /* LocationCell.xib in Resources */,
 				9A58368B262A961400DC3451 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,14 +368,26 @@
 				9AEA1D2325E5DE5500C329C8 /* ForgotPasswordViewController.swift in Sources */,
 				9AEA1D0025E5DAC000C329C8 /* AppDelegate.swift in Sources */,
 				9AEA1D3025E5DE7200C329C8 /* AuthService.swift in Sources */,
+				9A589DDA26371F7100585328 /* DescriptionCell.swift in Sources */,
 				9AEA1D2825E5DE6000C329C8 /* ViewController+Utility.swift in Sources */,
+				9A589DDD26371F8400585328 /* LanguageLabelCell.swift in Sources */,
 				9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */,
 				9AEA1D2725E5DE6000C329C8 /* Storyboard+Utility .swift in Sources */,
 				9AEA1D2F25E5DE7200C329C8 /* UserService.swift in Sources */,
 				9AEA1D2225E5DE5500C329C8 /* ProfileViewController.swift in Sources */,
+				9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */,
+				9A589DEC263753F100585328 /* SelectLocationViewController.swift in Sources */,
 				9AEA1D2125E5DE5500C329C8 /* LoginViewController.swift in Sources */,
+				9A589DE42637469800585328 /* LocationManager.swift in Sources */,
+				9A589DF32637583500585328 /* CountryTableViewCell.swift in Sources */,
 				9A583642262A2D1900DC3451 /* TranslationManager.swift in Sources */,
+				9A589E762639D4D700585328 /* UserCell.swift in Sources */,
+				9A589DD326371F4B00585328 /* LocationCell.swift in Sources */,
+				9A589DE72637470000585328 /* HomepageViewController.swift in Sources */,
+				9A589DD026371F0E00585328 /* ProfileCell.swift in Sources */,
 				9AEA1D2B25E5DE6800C329C8 /* User.swift in Sources */,
+				9A589DE026371FE500585328 /* FlagsCell.swift in Sources */,
+				9A589DD726371F5600585328 /* NameCell.swift in Sources */,
 				9AEA1D1C25E5DE4F00C329C8 /* CreateUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
