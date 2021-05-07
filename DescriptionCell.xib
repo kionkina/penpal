@@ -36,10 +36,26 @@
                             <constraint firstAttribute="height" constant="29.5" id="Iue-XP-DLn"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-aI-ljq">
+                        <rect key="frame" x="340" y="42" width="37" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="LqN-8C-whY"/>
+                            <constraint firstAttribute="width" constant="37" id="QBd-Gc-oIA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="Edit"/>
+                        <connections>
+                            <action selector="didTapImageView1:" destination="LHo-J7-skd" eventType="touchUpInside" id="6JV-gy-CB8"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="FVe-aI-ljq" secondAttribute="bottom" constant="4" id="3EA-lB-DpB"/>
                     <constraint firstItem="vl9-XP-EJ2" firstAttribute="leading" secondItem="9dz-cS-gS5" secondAttribute="leading" constant="20" symbolic="YES" id="AON-wD-oiX"/>
+                    <constraint firstItem="FVe-aI-ljq" firstAttribute="leading" secondItem="vl9-XP-EJ2" secondAttribute="trailing" constant="3" id="FIh-N2-iPO"/>
                     <constraint firstAttribute="bottom" secondItem="vl9-XP-EJ2" secondAttribute="bottom" id="H3I-th-68q"/>
+                    <constraint firstItem="FVe-aI-ljq" firstAttribute="top" secondItem="9dz-cS-gS5" secondAttribute="top" constant="42" id="JYM-M9-KLU"/>
+                    <constraint firstAttribute="trailing" secondItem="FVe-aI-ljq" secondAttribute="trailing" constant="9" id="KXp-12-N8X"/>
                     <constraint firstItem="vl9-XP-EJ2" firstAttribute="top" secondItem="9dz-cS-gS5" secondAttribute="top" id="dqh-16-2TG"/>
                     <constraint firstAttribute="bottom" secondItem="BHh-jS-nHb" secondAttribute="bottom" constant="20.5" id="fJs-7t-VRp"/>
                     <constraint firstItem="BHh-jS-nHb" firstAttribute="leading" secondItem="vl9-XP-EJ2" secondAttribute="trailing" constant="3" id="l0U-T1-vG7"/>
@@ -48,7 +64,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="vl9-XP-EJ2" id="OaB-ql-NdP"/>
-                <outlet property="editButton" destination="BHh-jS-nHb" id="cOv-T3-N0J"/>
+                <outlet property="editButton" destination="BHh-jS-nHb" id="jf6-RL-GzQ"/>
             </connections>
             <point key="canvasLocation" x="82.608695652173921" y="99.107142857142847"/>
         </tableViewCell>

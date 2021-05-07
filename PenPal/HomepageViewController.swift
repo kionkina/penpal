@@ -23,13 +23,13 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     var users: [User] = []
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
+        print(self.users[indexPath.row])
         let numFlags = max(self.users[indexPath.row].langToLearn.count, self.users[indexPath.row].langSpoken.count)
         
         //  (numFlags * 30) + 43 (all the content above stack views) + 24 (spacing between cell border and stackview)
@@ -46,7 +46,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
             withReuseIdentifier: "UserCell",
             for: indexPath) as! UserCell
         print("returning cell")
-        
+        cell.clearViews()
         cell.configure(user: self.users[indexPath.row])
         cell.onNameClicked = {
             self.performSegue(withIdentifier: "toUserProfile", sender: cell)
@@ -59,13 +59,33 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let refreshControl = UIRefreshControl()
+
+
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadUsers {
+        loadUsers { [self] in
             self.collectionView.reloadData()
+            self.collectionView.refreshControl = self.refreshControl
+            // Configure Refresh Control
+            refreshControl.addTarget(self, action: #selector(self.refreshUserData(_:)), for: .valueChanged)
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    @objc private func refreshUserData(_ sender: Any) {
+        print("in refresh user data")
+        self.users.removeAll()
+        loadUsers {
+            print("reloading!")
+            self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
+            
+        }
     }
     
     func viewDidAppear() {
@@ -81,7 +101,10 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
             print("got users!")
             print(users)
             for user in users {
-                self.users.append(user)
+                print("appending")
+                if (user != User.current) {
+                    self.users.append(user)
+                }
             }
             success()
         }

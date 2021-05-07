@@ -102,7 +102,8 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.isScrollEnabled = false
 
         //nameLabel.text = "\(User.current.firstName) \(User.current.lastName)"
-        tableView.register(ProfileCell.nib(), forCellReuseIdentifier: ProfileCell.identifier)
+
+
         tableView.register(LocationCell.nib(), forCellReuseIdentifier: LocationCell.identifier)
         tableView.register(DescriptionCell.nib(), forCellReuseIdentifier: DescriptionCell.identifier)
         tableView.register(NameCell.nib(), forCellReuseIdentifier: NameCell.identifier)

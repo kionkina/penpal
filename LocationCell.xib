@@ -24,15 +24,6 @@
                             <constraint firstAttribute="height" constant="26" id="Zyw-Fw-hrf"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fha-ip-NQE">
-                        <rect key="frame" x="315" y="14.5" width="30" height="24"/>
-                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28.5" id="TAL-hI-K7d"/>
-                            <constraint firstAttribute="width" constant="30" id="ttW-T8-YIu"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTa-Ss-Pxt">
                         <rect key="frame" x="65" y="14" width="247" height="20.5"/>
                         <constraints>
@@ -42,20 +33,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fha-ip-NQE">
+                        <rect key="frame" x="315" y="11" width="30" height="25.5"/>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="VgJ-le-RJ5"/>
+                            <constraint firstAttribute="width" constant="30" id="ttW-T8-YIu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="HTa-Ss-Pxt" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="14" id="24a-Xx-yOs"/>
                     <constraint firstItem="fm1-ql-2hx" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="12" id="3YW-Xa-hBJ"/>
                     <constraint firstAttribute="bottom" secondItem="fm1-ql-2hx" secondAttribute="bottom" constant="12.5" id="3ah-yS-rn9"/>
                     <constraint firstItem="HTa-Ss-Pxt" firstAttribute="leading" secondItem="fm1-ql-2hx" secondAttribute="trailing" constant="3" id="3nq-QP-PMm"/>
+                    <constraint firstItem="fha-ip-NQE" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="8.5" id="DYa-YD-sSN"/>
                     <constraint firstItem="fha-ip-NQE" firstAttribute="leading" secondItem="HTa-Ss-Pxt" secondAttribute="trailing" constant="3" id="P9K-s3-a9v"/>
-                    <constraint firstAttribute="bottom" secondItem="fha-ip-NQE" secondAttribute="bottom" constant="11.5" id="SKR-jA-dlx"/>
                     <constraint firstItem="fha-ip-NQE" firstAttribute="leading" secondItem="HTa-Ss-Pxt" secondAttribute="trailing" constant="3" id="bO8-Gu-1gS"/>
+                    <constraint firstItem="fha-ip-NQE" firstAttribute="leading" secondItem="HTa-Ss-Pxt" secondAttribute="trailing" constant="3" id="gpC-1Z-21J"/>
                     <constraint firstItem="fm1-ql-2hx" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="12" id="iZq-vc-xnk"/>
-                    <constraint firstItem="fha-ip-NQE" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="10" id="kx8-f4-3Gq"/>
-                    <constraint firstItem="fha-ip-NQE" firstAttribute="top" secondItem="B3w-ZO-qO3" secondAttribute="top" constant="12" id="l3p-hb-EVQ"/>
                     <constraint firstAttribute="bottom" secondItem="HTa-Ss-Pxt" secondAttribute="bottom" constant="15" id="pTV-tH-Vae"/>
-                    <constraint firstAttribute="bottom" secondItem="fha-ip-NQE" secondAttribute="bottom" constant="12.5" id="wNd-Lf-ZYy"/>
+                    <constraint firstAttribute="bottom" secondItem="fha-ip-NQE" secondAttribute="bottom" constant="13" id="t4W-pK-GHC"/>
                     <constraint firstItem="fm1-ql-2hx" firstAttribute="leading" secondItem="B3w-ZO-qO3" secondAttribute="leading" constant="36" id="xb4-5H-NyC"/>
                 </constraints>
             </tableViewCellContentView>

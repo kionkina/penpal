@@ -85,6 +85,22 @@ class DBViewController: UIViewController {
         }
     }
     
+    static func setDescription( newDesc:String, success: @escaping () -> Void){
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(User.current.uid)
+        
+        print("in db fxn")
+        
+        userRef.setData(["desc": newDesc], merge: true) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("LangToLearn succesfully updated!")
+                success()
+            }
+        }
+    }
+    
     static func getUsers(success: @escaping ([User]) -> ()) {
         let db = Firestore.firestore()
         let userRef = db.collection("users")

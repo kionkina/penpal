@@ -13,7 +13,13 @@ class ProfileCell: UITableViewCell {
 
     @IBOutlet weak var imgView: UIImageView!
     var user:User?
-
+    @IBOutlet weak var editButton: UIImageView!
+    var onEditPfpClicked : (()->())?
+    
+    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
+        print("did tap image view", sender)
+        self.onEditPfpClicked!()
+    }
     
     static let identifier = "ProfileCell"
     
@@ -23,17 +29,32 @@ class ProfileCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        super.awakeFromNib()
+        self.editButton.isHidden = true
+        self.imgView!.clipsToBounds = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
+        tapGesture.delegate = self
+        editButton.addGestureRecognizer(tapGesture)
+        
         // Initialization code
     }
     
     func configure(user: User){
         self.user = user
+        
         self.imageView!.sd_setImage(with: Storage.storage().reference().child("profilephotos").child("default.png"))
+        
+        if user == User.current {
+            print("show img edit button")
+            self.editButton.isHidden = false
+        }
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

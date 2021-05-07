@@ -273,7 +273,9 @@ extension LanguagesViewController: UITableViewDataSource {
                         if (User.current.langSpoken != spokenLangCodes){
                             User.current.langSpoken = spokenLangCodes
                             DBViewController.setSpoken {
-                                UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langSpoken")
+                                print("updating userDefs 1")
+                                let data = NSKeyedArchiver.archivedData(withRootObject: User.current)
+                                UserDefaults.standard.set(data, forKey: "currentUser")
                                 self.onDoneEditing!()
                         }
                     }
@@ -310,7 +312,11 @@ extension LanguagesViewController: UITableViewDataSource {
                     if (User.current.langToLearn != toLearnLangCodes){
                         User.current.langToLearn = toLearnLangCodes
                         DBViewController.setLearning {
-                            UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langToLearn")
+                            print("updating userDefs 2")
+                            //UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langToLearn")
+                            
+                            let data = NSKeyedArchiver.archivedData(withRootObject: User.current)
+                            UserDefaults.standard.set(data, forKey: "currentUser")
                             self.onDoneEditing!()
                         }
                     }

@@ -19,12 +19,14 @@ class User : NSObject {
     var langSpoken: [String]
     var langToLearn: [String]
     var location: String
+    var desc: String
     var dictValue: [String : Any] {
         return ["firstName" : firstName,
                 "lastName" : lastName,
                 "username" : username,
                 "langSpoken": langSpoken,
                 "langToLearn": langToLearn,
+                "description": desc,
                 "location": location]
     }
     
@@ -37,6 +39,7 @@ class User : NSObject {
         self.langSpoken = []
         self.langToLearn = []
         self.location = ""
+        self.desc = "Polyglot in the making! "
         super.init()
     }
     
@@ -48,6 +51,7 @@ class User : NSObject {
             let username = dict["username"] as? String,
             let langSpoken = dict["langSpoken"] as? [String],
             let langToLearn = dict["langToLearn"] as? [String],
+            let desc = dict["desc"] != nil ? dict["desc"] as? String : "Polyglot in the making!",
             let location = dict["location"] != nil ? dict["location"] as? String : ""
             else { return nil }
         self.uid = snapshot.documentID
@@ -57,6 +61,7 @@ class User : NSObject {
         self.langSpoken = langSpoken
         self.langToLearn = langToLearn
         self.location = location
+        self.desc = desc
     }
     
     //UserDefaults
@@ -67,7 +72,8 @@ class User : NSObject {
             let username = aDecoder.decodeObject(forKey: "username") as? String,
             let langSpoken = aDecoder.decodeObject(forKey: "langSpoken") as? [String],
             let langToLearn = aDecoder.decodeObject(forKey: "langToLearn") as? [String],
-            let location = aDecoder.decodeObject(forKey: "location") as? String
+            let location = aDecoder.decodeObject(forKey: "location") as? String,
+            let desc = aDecoder.decodeObject(forKey: "desc") as? String
             else { return nil }
         
         self.uid = uid
@@ -77,6 +83,7 @@ class User : NSObject {
         self.langSpoken = langSpoken
         self.langToLearn = langToLearn
         self.location = location
+        self.desc = desc
     }
     
     
@@ -92,12 +99,18 @@ class User : NSObject {
     }
     
     class func setCurrent(_ user: User, writeToUserDefaults: Bool = false) {
+        print("in set current")
         if writeToUserDefaults {
-            let data = NSKeyedArchiver.archivedData(withRootObject: user)
-            
-            UserDefaults.standard.set(data, forKey: "currentUser")
+
+            do {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: user, requiringSecureCoding: false)
+                UserDefaults.standard.set(data, forKey: "currentUser")
+                print("set default!")
+
+            } catch {
+                print("couldn't set")
+            }
         }
-        
         _current = user
     }
 }
@@ -111,5 +124,7 @@ extension User: NSCoding {
         aCoder.encode(langSpoken, forKey: "langSpoken")
         aCoder.encode(langToLearn, forKey: "langToLearn")
         aCoder.encode(location, forKey: "location")
+        aCoder.encode(desc, forKey: "desc")
+        
     }
 }

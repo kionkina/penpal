@@ -18,7 +18,8 @@ struct UserService {
                          "lastName": lastName,
                          "langSpoken": [],
                          "langToLearn": [],
-                         "location": ""] as [String : Any]
+                         "location": "",
+                         "desc": "Polyglot in the making!" ] as [String : Any]
         
         let ref = Firestore.firestore().collection("users").document(firUser.uid)
         

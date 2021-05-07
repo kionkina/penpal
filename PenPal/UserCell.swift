@@ -106,6 +106,18 @@ class UserCell: UICollectionViewCell {
             }
     
 }
+    
+    func clearViews() {
+        
+        while (self.learningStackView.subviews.count > 0) {
+            self.learningStackView.subviews[self.learningStackView.subviews.count - 1].removeFromSuperview()
+        }
+        
+        while (self.spokenStackView.subviews.count > 0) {
+            self.spokenStackView.subviews[self.spokenStackView.subviews.count - 1].removeFromSuperview()
+        }
+    }
+        
         
     
     func setImage(imgView: UIImageView, from url: String) {

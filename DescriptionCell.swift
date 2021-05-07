@@ -15,6 +15,13 @@ class DescriptionCell: UITableViewCell {
     
     static let identifier = "DescriptionCell"
     
+    var onEditDescriptionClicked : (()->())?
+    
+    @IBAction func didTapImageView1(_ sender: Any) {
+        print("did tap image view", sender)
+        onEditDescriptionClicked!()
+    }
+    
     static func nib() -> UINib {
         return UINib(nibName: "DescriptionCell", bundle: nil)
     }
@@ -22,7 +29,13 @@ class DescriptionCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.editButton.isHidden = true
-        self.descriptionLabel.text = "Until recently, the prevailing view assumed lorem ipsum was born as a nonsense text. It's not Latin, though it looks like it, and it actually says nothing,Before & After magazine answered a curious reader, Its ‘words’ loosely approximate the frequency with which letters occur in English, which is why at a glance it looks pretty real. As Cicero would put it, Um, not so fast. The placeholder text, beginning with the line “Lorem ipsum dolor sit amet, consectetur adipiscing elit”, looks like Latin because in its youth, centuries ago, it was Latin. Richard McClintock, a Latin scholar from Hampden-Sydney College, is credited with discovering the source behind the ubiquitous filler text. In seeing a sample of lorem ipsum, his interest was piqued by consectetur—a genuine, albeit rare, Latin word. Consulting a Latin dictionary led McClintock to a passage from De Finibus Bonorum et Malorum (“On the Extremes of Good and Evil”), a first-century B.C. text from the Roman philosopher Cicero."
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapImageView1(_:)))
+        gesture.delegate = self
+        print("adding recognizer")
+        self.editButton.addGestureRecognizer(gesture)
+        print("added")
+        
         // Initialization code
     }
 
@@ -31,6 +44,7 @@ class DescriptionCell: UITableViewCell {
         if self.user == User.current {
             self.editButton.isHidden = false
         }
+        self.descriptionLabel.text = user.desc
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

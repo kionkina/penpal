@@ -56,7 +56,6 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
             cell.configure(for: LocationManager.shared.allCountries[indexPath.row])
         }
         
-        cell.setSelected(true, animated: false)
         if cell.country.name == self.selectedCountry {
             cell.accessoryType = .checkmark
             cell.setSelected(true, animated: false)
@@ -78,7 +77,6 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
             print("index = \(index)")
             let prevPath = IndexPath(row: index, section: 0)
             let prevcell = tableView.cellForRow(at: prevPath) as? CountryTableViewCell
-            print("prev path counrty", prevcell?.country.name)
             prevcell!.accessoryType = .none
             prevcell!.setSelected(false, animated: false)
         }
@@ -201,12 +199,14 @@ extension SelectLocationViewController: UISearchBarDelegate {
         if searchText == "" {
             print("changed to empty")
             self.searching = false
-            let row = getSelectionIndex()
             tableView.reloadData()
-            self.selectedRow = row.row
-            self.tableView.selectRow(at: row, animated: false, scrollPosition: .none)
-            
-            print("updating selection, selected is \(row.row)")
+            if (self.selectedCountry != ""){
+                let row = getSelectionIndex()
+                self.selectedRow = row.row
+                self.tableView.selectRow(at: row, animated: false, scrollPosition: .none)
+                print("updating selection, selected is \(row.row)")
+            }
+          
             }
 
     }
@@ -215,8 +215,10 @@ extension SelectLocationViewController: UISearchBarDelegate {
         let index = LocationManager.shared.allCountries.firstIndex(where: { (currCountry) -> Bool in
             currCountry.name == self.selectedCountry // test if this is the item you're
         })
-        print("selection index is \(index)")
-        print("country is \(LocationManager.shared.allCountries[index!].name)")
+        if (index != nil) {
+            print("selection index is \(String(describing: index))")
+            print("country is \(LocationManager.shared.allCountries[index!].name)")
+        }
         return IndexPath(row: index!, section: 0)
     }
 }

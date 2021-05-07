@@ -43,7 +43,7 @@ class FlagsCell: UITableViewCell {
             }
             
             imgView.frame = CGRect(x: xcor, y: ycor, width: 40, height: 20)
-
+            print("CODE", langCode)
             self.setImage(imgView: imgView, from: langData!.imgUrl!)
             spokenStackView.addSubview(imgView)
             

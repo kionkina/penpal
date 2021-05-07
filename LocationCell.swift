@@ -42,7 +42,7 @@ class LocationCell: UITableViewCell {
     
     func configure(user: User){
         self.user = user
-        self.locationLabel.text = "\(self.user!.location)"
+        self.locationLabel.text = user.location
         if user == User.current {
             self.editButton.isHidden = false
         }

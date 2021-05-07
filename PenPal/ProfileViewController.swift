@@ -23,8 +23,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
                         //update DB and close it
                         print("closing")
-                        destinationVC.dismiss(animated: true, completion: nil)
-                        self.tableView.reloadData()
+                        destinationVC.dismiss(animated: true, completion: {self.tableView.reloadData()})
+                       
                     }
                 }
             }
@@ -34,8 +34,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.onDoneEditing = {
                         //update DB and close it
                         print("closing")
-                        destinationVC.dismiss(animated: true, completion: nil)
-                        self.tableView.reloadData()
+                        destinationVC.dismiss(animated: true, completion: {self.tableView.reloadData()})
+                        
 
                         //update DB and close it
                     }
@@ -46,12 +46,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.onDoneEditing = {
                         //update DB and close it
                         print("closing")
-                        destinationVC.dismiss(animated: true, completion: nil)
-                        self.tableView.reloadData()
+                        destinationVC.dismiss(animated: true, completion: {
+                            self.tableView.reloadData()
+                        })
+                        
                         //update DB and close it
                     }
                 }
             }
+            
+            else if (identifier == "editDescription") {
+                if let destinationVC = segue.destination as? EditDescriptionViewController {
+                    destinationVC.currentDescription = User.current.desc
+                    destinationVC.onDoneEditing = {
+                        //update DB and close it
+                        print("closing")
+                        destinationVC.dismiss(animated: true, completion: {
+                            self.tableView.reloadData()
+                        })
+                        //update DB and close it
+                    }
+                }
+            }
+            
         }
     }
     
@@ -78,7 +95,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
                 //do stuff
-                
+                cell.onEditPfpClicked = {
+                    print("TODO")
+                    //self.performSegue(withIdentifier: "editPfp", sender: Any?.self)
+                }
                 cell.configure(user: User.current)
                 cell.selectionStyle = .none
                 return cell
@@ -98,6 +118,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell", for: indexPath) as! DescriptionCell
+                cell.onEditDescriptionClicked = {
+                    self.performSegue(withIdentifier: "editDescription", sender: Any?.self)
+                }
                 cell.configure(user:User.current)
                 cell.selectionStyle = .none
                 return cell
@@ -151,7 +174,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.isScrollEnabled = false
 
         //nameLabel.text = "\(User.current.firstName) \(User.current.lastName)"
-        tableView.register(ProfileCell.nib(), forCellReuseIdentifier: ProfileCell.identifier)
+  
         tableView.register(LocationCell.nib(), forCellReuseIdentifier: LocationCell.identifier)
         tableView.register(DescriptionCell.nib(), forCellReuseIdentifier: DescriptionCell.identifier)
         tableView.register(NameCell.nib(), forCellReuseIdentifier: NameCell.identifier)
