@@ -76,9 +76,11 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
             let index: Int = self.selectedRow
             print("index = \(index)")
             let prevPath = IndexPath(row: index, section: 0)
-            let prevcell = tableView.cellForRow(at: prevPath) as? CountryTableViewCell
-            prevcell!.accessoryType = .none
-            prevcell!.setSelected(false, animated: false)
+            if (tableView.indexPathsForVisibleRows!.contains(prevPath)) {
+                let prevcell = tableView.cellForRow(at: prevPath) as? CountryTableViewCell
+                prevcell!.accessoryType = .none
+                prevcell!.setSelected(false, animated: false)
+            }
         }
     }
     
