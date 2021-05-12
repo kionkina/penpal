@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         LocationManager.shared.getCountriesandStates()
         
-        let db = Firestore.firestore()
+
         configureInitialRootViewController(for: window)
         return true
     }
@@ -38,7 +38,7 @@ extension AppDelegate {
     func configureInitialRootViewController(for window: UIWindow?) {
         let defaults = UserDefaults.standard
         let initialViewController: UIViewController
-        
+
         if Auth.auth().currentUser != nil,
             let userData = defaults.object(forKey: "currentUser") as? Data,
             let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
@@ -49,6 +49,7 @@ extension AppDelegate {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "tabController")
         }
         else {
+            print("in else")
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             // Look into using UINavigationController
             initialViewController = storyboard.instantiateViewController(withIdentifier:"LoginViewController")

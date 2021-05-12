@@ -124,16 +124,36 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         AuthService.removeAuthListener(authHandle: authHandle)
     }
 
-    @IBAction func logOutClicked(_ sender: UIButton) {
-        AuthService.presentLogOut(viewController: self)
+    @IBAction func showMessagePopup(sender: UIButton) {
+        
+        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "messagePopUp") as! MessagePopupViewController
+        self.addChild(popOverVC)
+        print("sending over", self.user!.firstName)
+      
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
+        popOverVC.configure(name: self.user!.firstName)
+        popOverVC.onSend = {
+            self.sendMessage(text: popOverVC.textField.text!) {
+                popOverVC.view.removeFromSuperview();
+                // segue to messages?
+            }
+        }
     }
     
-    @IBAction func deleteAccountClicked(_ sender: UIButton) {
-        guard let user = Auth.auth().currentUser else {
-            print("NO USER EXISTS???")
-            return
-        }
-        AuthService.presentDelete(viewController: self, user : user)
+    func sendMessage(text: String, success: @escaping ()->Void) {
+        print("in send message with text ", text)
+        // create message object
+        // set sender to self, receiver to user
+        // create doc and send
+        let message = Message(sender: User.current.uid, receiver: self.user!.uid, message: text)
+        DBViewController.sendFirstMessage(message: message, success: {
+            print("done")
+            success()
+        })
+        
+
     }
     
 }

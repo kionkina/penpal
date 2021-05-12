@@ -55,13 +55,6 @@ class TranslateViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("da view appeared")
-        print(self.toCode)
-        print(self.fromCode)
-        print(self.toCodeRow)
-        print(self.fromCodeRow)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,6 +20,7 @@ class User : NSObject {
     var langToLearn: [String]
     var location: String
     var desc: String
+    var conversations: [String: String]
     var dictValue: [String : Any] {
         return ["firstName" : firstName,
                 "lastName" : lastName,
@@ -27,7 +28,8 @@ class User : NSObject {
                 "langSpoken": langSpoken,
                 "langToLearn": langToLearn,
                 "description": desc,
-                "location": location]
+                "location": location,
+                "conversations": conversations]
     }
     
     //Standard User init()
@@ -40,6 +42,7 @@ class User : NSObject {
         self.langToLearn = []
         self.location = ""
         self.desc = "Polyglot in the making! "
+        self.conversations = [String: String]()
         super.init()
     }
     
@@ -52,7 +55,8 @@ class User : NSObject {
             let langSpoken = dict["langSpoken"] as? [String],
             let langToLearn = dict["langToLearn"] as? [String],
             let desc = dict["desc"] != nil ? dict["desc"] as? String : "Polyglot in the making!",
-            let location = dict["location"] != nil ? dict["location"] as? String : ""
+            let location = dict["location"] != nil ? dict["location"] as? String : "",
+            let conversations = dict["conversations"] != nil ? dict["conversations"] as? [String: String] : [String: String]()
             else { return nil }
         self.uid = snapshot.documentID
         self.firstName = firstName
@@ -62,6 +66,7 @@ class User : NSObject {
         self.langToLearn = langToLearn
         self.location = location
         self.desc = desc
+        self.conversations = conversations
     }
     
     //UserDefaults
@@ -73,7 +78,8 @@ class User : NSObject {
             let langSpoken = aDecoder.decodeObject(forKey: "langSpoken") as? [String],
             let langToLearn = aDecoder.decodeObject(forKey: "langToLearn") as? [String],
             let location = aDecoder.decodeObject(forKey: "location") as? String,
-            let desc = aDecoder.decodeObject(forKey: "desc") as? String
+            let desc = aDecoder.decodeObject(forKey: "desc") as? String,
+            let conversations = aDecoder.decodeObject(forKey: "conversations") as? [String: String]
             else { return nil }
         
         self.uid = uid
@@ -84,6 +90,7 @@ class User : NSObject {
         self.langToLearn = langToLearn
         self.location = location
         self.desc = desc
+        self.conversations = conversations
     }
     
     
@@ -125,6 +132,7 @@ extension User: NSCoding {
         aCoder.encode(langToLearn, forKey: "langToLearn")
         aCoder.encode(location, forKey: "location")
         aCoder.encode(desc, forKey: "desc")
+        aCoder.encode(conversations, forKey: "conversations")
         
     }
 }

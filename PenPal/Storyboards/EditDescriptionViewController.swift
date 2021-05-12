@@ -18,14 +18,8 @@ class EditDescriptionViewController: UIViewController {
         if (self.textField.text != User.current.desc) {
             DBViewController.setDescription(newDesc: self.textField.text, success: {
                 User.current.desc = self.textField.text
-                do {
-                    let data = try NSKeyedArchiver.archivedData(withRootObject: User.current, requiringSecureCoding: false)
-                    UserDefaults.standard.set(data, forKey: "currentUser")
-                    print("set default!")
-
-                } catch {
-                    print("couldn't set")
-                }
+                User.setCurrent(User.current)
+                print("set default!")
             })
         }
         

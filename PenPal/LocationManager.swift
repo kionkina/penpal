@@ -37,7 +37,7 @@ class LocationManager: NSObject {
     
     func getCountriesandStates() {
     
-        var semaphore = DispatchSemaphore (value: 0)
+        let semaphore = DispatchSemaphore (value: 0)
 
         var request = URLRequest(url: URL(string: "https://countriesnow.space/api/v0.1/countries/states")!,timeoutInterval: Double.infinity)
         request.httpMethod = "GET"

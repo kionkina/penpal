@@ -110,7 +110,7 @@ class DBViewController: UIViewController {
         print("looking for users who's langSpoken has \(User.current.langToLearn)")
         print("and their toLearn is in \(User.current.langSpoken)")
         
-        let spokenList = userRef.whereField("langSpoken", arrayContainsAny: User.current.langToLearn).getDocuments { (snapshot, _: Error?) in
+        userRef.whereField("langSpoken", arrayContainsAny: User.current.langToLearn).getDocuments { (snapshot, _: Error?) in
  
             var docs: [QueryDocumentSnapshot] = []
             for doc in snapshot!.documents {
@@ -128,6 +128,63 @@ class DBViewController: UIViewController {
         }
         
   
+    }
+    
+    static func getUserById(uids: [String], success: @escaping ((DocumentSnapshot) -> Void)) {
+        let db = Firestore.firestore()
+        let userRef = db.collection("users")
+        var ret = [User]()
+        userRef.whereField("uid", in: uids).getDocuments { (qs: QuerySnapshot?, _: Error?) in
+            print("RET LENGTH SHUD BE 3: ", qs?.documents.count)
+            for doc in qs!.documents {
+                //ret.append(User(snapshot: doc)!)
+                success(doc)
+            }
+            //success(ret)
+        }
+        
+    }
+    
+    static func addMessage(convoId: String, message: Message, success: @escaping(() -> Void)) {
+        let db = Firestore.firestore()
+        var data = [String: String]()
+        data["sender"] = message.sender
+        data["receiver"] = message.receiver
+        data["message"] = message.message
+        
+        let convoRef = db.collection("conversations").document(convoId)
+        
+        convoRef.collection("messages").addDocument(data: data ) { err in
+               if let err = err {
+                   print("Error adding conversation document: \(err)")
+               } else {
+                    //added to sub collection
+                    success()
+               }
+           }
+    }
+    
+    static func sendFirstMessage(message: Message, success: @escaping(() -> Void)) {
+        print("in db method")
+        let db = Firestore.firestore()
+        let userRef = db.collection("users").document(User.current.uid)
+
+        var data = [String: String]()
+        data["sender"] = message.sender
+        data["receiver"] = message.receiver
+        data["message"] = message.message
+        var convoRef: DocumentReference? = nil
+        convoRef = db.collection("conversations").addDocument(data: data ) { err in
+               if let err = err {
+                   print("Error adding conversation document: \(err)")
+               } else {
+                let docId = convoRef!.documentID
+                userRef.updateData(["conversations.\(message.receiver)" : docId]);
+                // Added thread.
+                User.current.conversations[message.receiver] = docId
+                addMessage(convoId: docId, message: message, success: success)
+               }
+           }
     }
 
 }

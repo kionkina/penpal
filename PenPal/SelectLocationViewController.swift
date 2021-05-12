@@ -139,9 +139,7 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
                 User.current.location = self.selectedCountry
                 DBViewController.setLangAndLocation {
                     //segue
-                    UserDefaults.standard.set(User.current.langSpoken, forKey: "langSpoken")
-                    UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langToLearn")
-                    UserDefaults.standard.setValue(User.current.location, forKey: "location")
+                    User.setCurrent(User.current)
                    
                     let initialViewController = UIStoryboard.initialViewController(for: .main)
                     self.view.window?.rootViewController = initialViewController
