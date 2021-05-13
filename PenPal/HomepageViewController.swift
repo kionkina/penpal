@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class HomepageViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
  {
     
@@ -37,8 +38,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         print("height: \(height)")
         
         
-            
-            return CGSize(width: 200, height: height)
+        return CGSize(width: Int(self.view.frame.size.width), height: height)
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

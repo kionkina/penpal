@@ -37,13 +37,17 @@ class ProfileCell: UITableViewCell {
         tapGesture.delegate = self
         editButton.addGestureRecognizer(tapGesture)
         
+        self.imgView.clipsToBounds = true
+        //self.imgView.contentMode = .scaleAspectFit
+        self.imgView.contentMode = .scaleToFill
+        
         // Initialization code
     }
     
     func configure(user: User){
         self.user = user
         
-        self.imageView!.sd_setImage(with: Storage.storage().reference().child("profilephotos").child("default.png"))
+        self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child("default.png"))
         
         if user == User.current {
             print("show img edit button")

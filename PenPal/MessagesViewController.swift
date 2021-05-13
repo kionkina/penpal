@@ -10,6 +10,9 @@ import UIKit
 class MessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    private let refreshControl = UIRefreshControl()
+    
     var users: [String: User] = [String: User]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -20,31 +23,58 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")! as! MessageTableViewCell
         
         let user = self.users[Array(self.users.keys)[indexPath.row]]
-        cell.configure(name: user!.firstName)
+        cell.configure(name: "\(user!.firstName) \(user!.lastName)", uid: user!.uid)
         
-        
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    func loadUsers() {
+           performSegue(withIdentifier: "toConversations", sender: self)
+
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if let destination = segue.destination as? ConversationViewController {
+            let penPalUid = (self.tableView.cellForRow(at:  tableView.indexPathForSelectedRow!) as! MessageTableViewCell).uid!
+            destination.receiver = self.users[penPalUid]
+            destination.convoId = User.current.conversations[penPalUid]
+            
+         }
+    }
+    
+    func loadUsers(success: @escaping ()->Void ) {
         print("calling on ", Array(User.current.conversations.keys))
-        DBViewController.getUserById(uids:Array(User.current.conversations.keys)) { [self] (snap) in
-            let user = User(snapshot: snap)
-            self.users[user!.uid] = user
-            tableView.reloadData()
+        DBViewController.getUsersByIds(uids:Array(User.current.conversations.keys)) { (users) in
+            for user in users {
+                self.users[user.uid] = user
+            }
+        success()
         }
-            print(self.users)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadUsers()
+        self.loadUsers( success: {
+            self.tableView.reloadData()
+        })
+        self.tableView.refreshControl = self.refreshControl
+        refreshControl.addTarget(self, action: #selector(self.refreshUserData(_:)), for: .valueChanged)
 
         // Do any additional setup after loading the view.
     }
     
+    @objc private func refreshUserData(_ sender: Any) {
+        print("in refresh user data")
+        self.users.removeAll()
+        self.loadUsers {
+            print("reloading!")
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            
+        }
+    }
 
     /*
     // MARK: - Navigation

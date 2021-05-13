@@ -10,7 +10,7 @@ import UIKit
 class DescriptionCell: UITableViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var editButton: UIImageView!
+    @IBOutlet weak var editButton: UIButton!
     var user: User?
     
     static let identifier = "DescriptionCell"

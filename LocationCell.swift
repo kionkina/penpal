@@ -12,12 +12,12 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     
     static let identifier = "LocationCell"
-    @IBOutlet weak var editButton: UIImageView!
+    @IBOutlet weak var editButton: UIButton!
     var user: User?
     
     var onEditLocationClicked : (()->())?
 
-    @IBAction func didTapImageView(_ sender: UITapGestureRecognizer) {
+    @IBAction func didTapImageView(_ sender: UIButton) {
         print("did tap image view", sender)
         self.onEditLocationClicked!()
     }
@@ -33,10 +33,7 @@ class LocationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.editButton.isHidden = true
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
-        tapGesture.delegate = self
-        editButton.addGestureRecognizer(tapGesture)
+
         // Initialization code
     }
     

@@ -14,7 +14,6 @@
 		9A583643262A2D1900DC3451 /* TranslationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583641262A2D1900DC3451 /* TranslationAPI.swift */; };
 		9A583646262A2EE000DC3451 /* LanguagesViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */; };
 		9A58364E262A2EEF00DC3451 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A58364C262A2EEF00DC3451 /* LanguageCell.swift */; };
-		9A583651262A2F0A00DC3451 /* GTAlertCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */; };
 		9A58368B262A961400DC3451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A58368A262A961300DC3451 /* GoogleService-Info.plist */; };
 		9A589DBD26371B0A00585328 /* NameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DBC26371B0A00585328 /* NameCell.xib */; };
 		9A589DC026371B6C00585328 /* LocationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DBF26371B6C00585328 /* LocationCell.xib */; };
@@ -32,10 +31,14 @@
 		9A589DEC263753F100585328 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DEB263753F000585328 /* SelectLocationViewController.swift */; };
 		9A589DF32637583500585328 /* CountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589DF12637583500585328 /* CountryTableViewCell.swift */; };
 		9A589E762639D4D700585328 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A589E752639D4D700585328 /* UserCell.swift */; };
+		9A630F9B264C58C1002B94AC /* MessagePopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */; };
+		9A630F9F264C70FB002B94AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A630F9E264C70FA002B94AC /* Message.swift */; };
+		9A630FA2264C7F99002B94AC /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */; };
 		9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81DD22262FA74F00C38F4F /* DBViewController.swift */; };
 		9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */; };
-		9AD32F3726449D0100029C14 /* TranslationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F3626449D0100029C14 /* TranslationTableViewController.swift */; };
+		9AC1929A264C98D20070004E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC19299264C98D20070004E /* ConversationViewController.swift */; };
 		9AD32F3B26459F6500029C14 /* ShowTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */; };
+		9AD32F572645C20400029C14 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F562645C20400029C14 /* MessagesViewController.swift */; };
 		9AEA1D0025E5DAC000C329C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */; };
 		9AEA1D0425E5DAC000C329C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0325E5DAC000C329C8 /* ViewController.swift */; };
 		9AEA1D0925E5DAC400C329C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0825E5DAC400C329C8 /* Assets.xcassets */; };
@@ -65,7 +68,6 @@
 		9A583641262A2D1900DC3451 /* TranslationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationAPI.swift; path = ../../../../../Downloads/GoogleCloudTranslateStarter/Translate/Core/TranslationAPI.swift; sourceTree = "<group>"; };
 		9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LanguagesViewController copy.swift"; sourceTree = "<group>"; };
 		9A58364C262A2EEF00DC3451 /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
-		9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTAlertCollection.swift; sourceTree = "<group>"; };
 		9A58368A262A961300DC3451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A589DBC26371B0A00585328 /* NameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameCell.xib; sourceTree = "<group>"; };
 		9A589DBF26371B6C00585328 /* LocationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCell.xib; sourceTree = "<group>"; };
@@ -83,10 +85,14 @@
 		9A589DEB263753F000585328 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		9A589DF12637583500585328 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
 		9A589E752639D4D700585328 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = PenPal/UserCell.swift; sourceTree = SOURCE_ROOT; };
+		9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePopupViewController.swift; sourceTree = "<group>"; };
+		9A630F9E264C70FA002B94AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		9A81DD22262FA74F00C38F4F /* DBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
 		9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		9AD32F3626449D0100029C14 /* TranslationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationTableViewController.swift; path = ../../../../.Trash/TranslationTableViewController.swift; sourceTree = "<group>"; };
+		9AC19299264C98D20070004E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTranslationViewController.swift; sourceTree = "<group>"; };
+		9AD32F562645C20400029C14 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9AEA1CFC25E5DAC000C329C8 /* PenPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AEA1D0325E5DAC000C329C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,10 @@
 		9AEA1CFE25E5DAC000C329C8 /* PenPal */ = {
 			isa = PBXGroup;
 			children = (
+				9A630F9E264C70FA002B94AC /* Message.swift */,
+				9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */,
+				9AC19299264C98D20070004E /* ConversationViewController.swift */,
+				9AD32F562645C20400029C14 /* MessagesViewController.swift */,
 				9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */,
 				9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */,
 				9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */,
@@ -221,10 +231,10 @@
 				9A589E752639D4D700585328 /* UserCell.swift */,
 				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
 				9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */,
+				9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */,
 				9AEA1D2525E5DE6000C329C8 /* Storyboard+Utility .swift */,
 				9AEA1D2625E5DE6000C329C8 /* ViewController+Utility.swift */,
 				9AEA1D0325E5DAC000C329C8 /* ViewController.swift */,
-				9A583650262A2F0A00DC3451 /* GTAlertCollection.swift */,
 				9A589DEB263753F000585328 /* SelectLocationViewController.swift */,
 				9A589DE62637470000585328 /* HomepageViewController.swift */,
 				9A589DE32637469700585328 /* LocationManager.swift */,
@@ -234,7 +244,6 @@
 				9AEA1D0D25E5DAC400C329C8 /* Info.plist */,
 				9A58364C262A2EEF00DC3451 /* LanguageCell.swift */,
 				9A58368A262A961300DC3451 /* GoogleService-Info.plist */,
-				9AD32F3626449D0100029C14 /* TranslationTableViewController.swift */,
 				9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */,
 				9A81DD22262FA74F00C38F4F /* DBViewController.swift */,
 				9A58363F262A2CF400DC3451 /* Translation */,
@@ -372,7 +381,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A583643262A2D1900DC3451 /* TranslationAPI.swift in Sources */,
-				9A583651262A2F0A00DC3451 /* GTAlertCollection.swift in Sources */,
 				9AEA1D0425E5DAC000C329C8 /* ViewController.swift in Sources */,
 				9A583646262A2EE000DC3451 /* LanguagesViewController copy.swift in Sources */,
 				9A58364E262A2EEF00DC3451 /* LanguageCell.swift in Sources */,
@@ -384,8 +392,10 @@
 				9AEA1D2825E5DE6000C329C8 /* ViewController+Utility.swift in Sources */,
 				9A589DDD26371F8400585328 /* LanguageLabelCell.swift in Sources */,
 				9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */,
+				9AC1929A264C98D20070004E /* ConversationViewController.swift in Sources */,
 				9AEA1D2725E5DE6000C329C8 /* Storyboard+Utility .swift in Sources */,
 				9AEA1D2F25E5DE7200C329C8 /* UserService.swift in Sources */,
+				9AD32F572645C20400029C14 /* MessagesViewController.swift in Sources */,
 				9AEA1D2225E5DE5500C329C8 /* ProfileViewController.swift in Sources */,
 				9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */,
 				9A589DEC263753F100585328 /* SelectLocationViewController.swift in Sources */,
@@ -398,10 +408,12 @@
 				9A589DD326371F4B00585328 /* LocationCell.swift in Sources */,
 				9A589DE72637470000585328 /* HomepageViewController.swift in Sources */,
 				9A589DD026371F0E00585328 /* ProfileCell.swift in Sources */,
+				9A630F9F264C70FB002B94AC /* Message.swift in Sources */,
 				9AEA1D2B25E5DE6800C329C8 /* User.swift in Sources */,
+				9A630FA2264C7F99002B94AC /* MessageTableViewCell.swift in Sources */,
 				9A589DE026371FE500585328 /* FlagsCell.swift in Sources */,
 				9A55FE38264460750090824E /* TranslateChoiceTableViewCell.swift in Sources */,
-				9AD32F3726449D0100029C14 /* TranslationTableViewController.swift in Sources */,
+				9A630F9B264C58C1002B94AC /* MessagePopupViewController.swift in Sources */,
 				9AD32F3B26459F6500029C14 /* ShowTranslationViewController.swift in Sources */,
 				9A589DD726371F5600585328 /* NameCell.swift in Sources */,
 				9AEA1D1C25E5DE4F00C329C8 /* CreateUserViewController.swift in Sources */,

@@ -13,6 +13,12 @@ import FirebaseFirestore
 
 class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if let destination = segue.destination as? ConversationViewController {
+            destination.receiver = self.user
+            destination.convoId = User.current.conversations[user!.uid]
+         }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
@@ -46,6 +52,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
                 let cell = tableView.dequeueReusableCell(withIdentifier: "NameCell", for: indexPath) as! NameCell
                 cell.configure(user: self.user!)
                 cell.selectionStyle = .none
+                
                 return cell
 
             case 2:
@@ -125,19 +132,26 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     @IBAction func showMessagePopup(sender: UIButton) {
-        
-        let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "messagePopUp") as! MessagePopupViewController
-        self.addChild(popOverVC)
-        print("sending over", self.user!.firstName)
-      
-        popOverVC.view.frame = self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParent: self)
-        popOverVC.configure(name: self.user!.firstName)
-        popOverVC.onSend = {
-            self.sendMessage(text: popOverVC.textField.text!) {
-                popOverVC.view.removeFromSuperview();
-                // segue to messages?
+        //we've already been messaging this user!
+        if (Array(User.current.conversations.keys).contains(self.user!.uid)) {
+            self.performSegue(withIdentifier: "sendToMessages", sender: self)
+            
+        } else {
+            // otherwise send first msg
+            let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "messagePopUp") as! MessagePopupViewController
+            self.addChild(popOverVC)
+            print("sending over", self.user!.firstName)
+          
+            popOverVC.view.frame = self.view.frame
+            self.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self)
+            popOverVC.configure(name: self.user!.firstName)
+            popOverVC.onSend = {
+                self.sendMessage(text: popOverVC.textField.text!) {
+                    popOverVC.view.removeFromSuperview();
+                    self.performSegue(withIdentifier: "sendToMessages", sender: self)
+                    // segue to messages?
+                }
             }
         }
     }

@@ -26,7 +26,6 @@ class MessagePopupViewController: UIViewController {
     }
     
     @IBAction func send(sender: UIButton) {
-        print("text: ", self.textField.text!)
         if (self.textField.text!.trimmingCharacters(in: .whitespaces) == "") {
             displayNoChoiceAlert(message: "Empty messages aren't great conversation starters... Try again?")
         } else {
@@ -35,7 +34,6 @@ class MessagePopupViewController: UIViewController {
     }
     
     func configure(name: String) {
-        print(self.label)
         self.label.text = "Send message to \(name)"
     }
     

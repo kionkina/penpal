@@ -8,41 +8,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="61" id="LHo-J7-skd" customClass="DescriptionCell" customModule="PenPal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="386" height="70"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="21" id="LHo-J7-skd" customClass="DescriptionCell" customModule="PenPal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="386" height="30"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LHo-J7-skd" id="9dz-cS-gS5">
-                <rect key="frame" x="0.0" y="0.0" width="386" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="386" height="30"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vl9-XP-EJ2">
-                        <rect key="frame" x="20" y="0.0" width="317" height="70"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="317" id="SwM-ie-0pF"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="20" y="4.5" width="346" height="21.5"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BHh-jS-nHb">
-                        <rect key="frame" x="340" y="22.5" width="28" height="25"/>
-                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="28" id="2Ab-MP-irI"/>
-                            <constraint firstAttribute="width" constant="28" id="4aj-zS-bOr"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="29.5" id="6jI-Hi-Pnp"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="BqR-CR-Aod"/>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="29.5" id="Hvs-Em-Nch"/>
-                            <constraint firstAttribute="height" constant="29.5" id="Iue-XP-DLn"/>
-                        </constraints>
-                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FVe-aI-ljq">
-                        <rect key="frame" x="340" y="42" width="37" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="24" id="LqN-8C-whY"/>
-                            <constraint firstAttribute="width" constant="37" id="QBd-Gc-oIA"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <rect key="frame" x="178" y="26" width="30" height="1"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="Edit"/>
                         <connections>
                             <action selector="didTapImageView1:" destination="LHo-J7-skd" eventType="touchUpInside" id="6JV-gy-CB8"/>
@@ -50,26 +31,20 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="FVe-aI-ljq" secondAttribute="bottom" constant="4" id="3EA-lB-DpB"/>
-                    <constraint firstItem="vl9-XP-EJ2" firstAttribute="leading" secondItem="9dz-cS-gS5" secondAttribute="leading" constant="20" symbolic="YES" id="AON-wD-oiX"/>
-                    <constraint firstItem="FVe-aI-ljq" firstAttribute="leading" secondItem="vl9-XP-EJ2" secondAttribute="trailing" constant="3" id="FIh-N2-iPO"/>
-                    <constraint firstAttribute="bottom" secondItem="vl9-XP-EJ2" secondAttribute="bottom" id="H3I-th-68q"/>
-                    <constraint firstItem="FVe-aI-ljq" firstAttribute="top" secondItem="9dz-cS-gS5" secondAttribute="top" constant="42" id="JYM-M9-KLU"/>
-                    <constraint firstAttribute="trailing" secondItem="FVe-aI-ljq" secondAttribute="trailing" constant="9" id="KXp-12-N8X"/>
-                    <constraint firstItem="vl9-XP-EJ2" firstAttribute="top" secondItem="9dz-cS-gS5" secondAttribute="top" id="dqh-16-2TG"/>
-                    <constraint firstAttribute="bottom" secondItem="BHh-jS-nHb" secondAttribute="bottom" constant="20.5" id="fJs-7t-VRp"/>
-                    <constraint firstItem="BHh-jS-nHb" firstAttribute="leading" secondItem="vl9-XP-EJ2" secondAttribute="trailing" constant="3" id="l0U-T1-vG7"/>
-                    <constraint firstItem="BHh-jS-nHb" firstAttribute="top" secondItem="9dz-cS-gS5" secondAttribute="top" constant="20" symbolic="YES" id="uNj-GI-wn3"/>
+                    <constraint firstItem="vl9-XP-EJ2" firstAttribute="leading" secondItem="9dz-cS-gS5" secondAttribute="leading" constant="20" id="1c8-ua-hLk"/>
+                    <constraint firstItem="FVe-aI-ljq" firstAttribute="top" secondItem="vl9-XP-EJ2" secondAttribute="bottom" id="3gZ-Ga-lf3"/>
+                    <constraint firstItem="vl9-XP-EJ2" firstAttribute="centerX" secondItem="9dz-cS-gS5" secondAttribute="centerX" id="AmT-2b-RLY"/>
+                    <constraint firstItem="FVe-aI-ljq" firstAttribute="centerX" secondItem="9dz-cS-gS5" secondAttribute="centerX" id="MyI-cy-Cwt"/>
+                    <constraint firstItem="vl9-XP-EJ2" firstAttribute="centerY" secondItem="9dz-cS-gS5" secondAttribute="centerY" id="OcV-RC-Jhk"/>
+                    <constraint firstAttribute="trailing" secondItem="vl9-XP-EJ2" secondAttribute="trailing" constant="20" id="Ojx-z5-ASH"/>
+                    <constraint firstAttribute="bottom" secondItem="FVe-aI-ljq" secondAttribute="bottom" constant="3" id="vcG-CE-1EM"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="descriptionLabel" destination="vl9-XP-EJ2" id="OaB-ql-NdP"/>
-                <outlet property="editButton" destination="BHh-jS-nHb" id="jf6-RL-GzQ"/>
+                <outlet property="editButton" destination="FVe-aI-ljq" id="aKc-be-hBV"/>
             </connections>
-            <point key="canvasLocation" x="82.608695652173921" y="99.107142857142847"/>
+            <point key="canvasLocation" x="82.608695652173921" y="112.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="pencil" catalog="system" width="128" height="113"/>
-    </resources>
 </document>

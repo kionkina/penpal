@@ -13,6 +13,7 @@ class Message: NSObject {
     var sender: String
     var receiver: String
     var message: String
+    var timestamp: Timestamp
     
     
     //Standard Message init()
@@ -20,6 +21,8 @@ class Message: NSObject {
         self.sender = sender
         self.receiver = receiver
         self.message = message
+        self.timestamp = Timestamp(date: Date())
+        
         super.init()
     }
     
@@ -28,11 +31,13 @@ class Message: NSObject {
         guard let dict = snapshot.data(),
             let sender = dict["sender"] as? String,
             let receiver = dict["receiver"] as? String,
-            let message = dict["message"] as? String
+            let message = dict["message"] as? String,
+            let timestamp = dict["timestamp"] != nil ? dict["timestamp"] as? Timestamp : Timestamp(seconds: 0, nanoseconds: 0)
         else { return nil }
         self.sender = sender
         self.receiver = receiver
         self.message = message
+        self.timestamp = timestamp
     }
     
     

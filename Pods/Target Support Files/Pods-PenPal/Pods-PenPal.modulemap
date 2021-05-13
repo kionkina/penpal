@@ -1,0 +1,6 @@
+framework module Pods_PenPal {
+  umbrella header "Pods-PenPal-umbrella.h"
+
+  export *
+  module * { export * }
+}

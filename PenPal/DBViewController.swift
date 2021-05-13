@@ -130,27 +130,27 @@ class DBViewController: UIViewController {
   
     }
     
-    static func getUserById(uids: [String], success: @escaping ((DocumentSnapshot) -> Void)) {
+    static func getUsersByIds(uids: [String], success: @escaping (([User]) -> Void)) {
         let db = Firestore.firestore()
         let userRef = db.collection("users")
         var ret = [User]()
-        userRef.whereField("uid", in: uids).getDocuments { (qs: QuerySnapshot?, _: Error?) in
-            print("RET LENGTH SHUD BE 3: ", qs?.documents.count)
+        
+        userRef.whereField(FieldPath.documentID(), in: uids).getDocuments { (qs: QuerySnapshot?, _: Error?) in
             for doc in qs!.documents {
-                //ret.append(User(snapshot: doc)!)
-                success(doc)
+                ret.append(User(snapshot: doc)!)
             }
-            //success(ret)
+            success(ret)
         }
         
     }
     
     static func addMessage(convoId: String, message: Message, success: @escaping(() -> Void)) {
         let db = Firestore.firestore()
-        var data = [String: String]()
+        var data = [String: Any]()
         data["sender"] = message.sender
         data["receiver"] = message.receiver
         data["message"] = message.message
+        data["timestamp"] = message.timestamp
         
         let convoRef = db.collection("conversations").document(convoId)
         
@@ -169,10 +169,8 @@ class DBViewController: UIViewController {
         let db = Firestore.firestore()
         let userRef = db.collection("users").document(User.current.uid)
 
-        var data = [String: String]()
-        data["sender"] = message.sender
-        data["receiver"] = message.receiver
-        data["message"] = message.message
+        var data = [String: Any]()
+        data["created"] = Timestamp(date: Date())
         var convoRef: DocumentReference? = nil
         convoRef = db.collection("conversations").addDocument(data: data ) { err in
                if let err = err {
@@ -182,9 +180,20 @@ class DBViewController: UIViewController {
                 userRef.updateData(["conversations.\(message.receiver)" : docId]);
                 // Added thread.
                 User.current.conversations[message.receiver] = docId
+                User.setCurrent(User.current)
                 addMessage(convoId: docId, message: message, success: success)
                }
            }
     }
-
+    
+    static func getMessagesById(convoId: String, success: @escaping ([Message])->Void) {
+        let db = Firestore.firestore()
+        var ret = [Message]()
+        db.collection("conversations").document(convoId).collection("messages").order(by: "timestamp", descending: true).getDocuments{ (qs: QuerySnapshot?, err) in
+            for doc in qs!.documents {
+                ret.append(Message(snapshot: doc)!)
+            }
+        success(ret)
+        }
+    }
 }

@@ -195,7 +195,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         AuthService.removeAuthListener(authHandle: authHandle)
     }
 
-    @IBAction func logOutClicked(_ sender: UIButton) {
+    @IBAction func logOutClicked(_ sender: UIBarButtonItem) {
         AuthService.presentLogOut(viewController: self)
     }
     
