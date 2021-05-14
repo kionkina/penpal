@@ -9,9 +9,10 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
@@ -89,6 +90,62 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
       }
     }
     
+    func updatePfp(imgUrl: URL, success: @escaping() -> Void) {
+        let db = Firestore.firestore()
+        let imageID:String = UUID().uuidString
+        print("db generated: ", imageID)
+        
+        let imgRef = Storage.storage().reference().child("profilephotos")
+        let oldPic = User.current.profilePic
+        //upload image to bucket
+        imgRef.child(imageID).putFile(from: imgUrl, metadata: nil) { (metadata, err) in
+            if let err = err{
+                print("error uploading pic: ", err.localizedDescription)
+            }
+            else{
+                db.collection("users").document(User.current.uid).updateData(["profilePic" : imageID]) { err in
+                    if let err  = err {
+                        print("Error updating document: \(err.localizedDescription)")
+                    }
+                    else {
+                        print("Document successfully updated")
+                        // then delete the previous photo
+                        if (oldPic != "default.jpeg"){
+                            let oldProfilePicRef = imgRef.child(oldPic)
+                            oldProfilePicRef.delete { error in
+                                if let error = error {
+                                    print("error: ", error.localizedDescription)
+                                } else {
+                                    print("Successfully deleted")
+                                    User.current.profilePic = imageID
+                                    User.setCurrent(User.current, writeToUserDefaults: true)
+                                    success()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL{
+            self.updatePfp(imgUrl: url) {
+                self.tableView.reloadData()
+            }
+        }
+        
+      /*  if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.image = pickedImage
+            print("picked img! ", pickedImage)
+        }*/
+
+        dismiss(animated: true, completion: nil)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         switch indexPath.row {
@@ -97,6 +154,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 //do stuff
                 cell.onEditPfpClicked = {
                     print("TODO")
+                    let imagePicker = UIImagePickerController()
+                      imagePicker.sourceType = .photoLibrary
+                      imagePicker.delegate = self
+                      imagePicker.allowsEditing = false
+                    self.present(imagePicker, animated: true, completion: nil)
                     //self.performSegue(withIdentifier: "editPfp", sender: Any?.self)
                 }
                 cell.configure(user: User.current)

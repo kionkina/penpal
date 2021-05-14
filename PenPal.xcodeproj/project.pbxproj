@@ -37,6 +37,7 @@
 		9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A81DD22262FA74F00C38F4F /* DBViewController.swift */; };
 		9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */; };
 		9AC1929A264C98D20070004E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC19299264C98D20070004E /* ConversationViewController.swift */; };
+		9AC1934D264ECFAA0070004E /* send.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9AC1934F264ECFAA0070004E /* send.caf */; };
 		9AD32F3B26459F6500029C14 /* ShowTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */; };
 		9AD32F572645C20400029C14 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F562645C20400029C14 /* MessagesViewController.swift */; };
 		9AEA1D0025E5DAC000C329C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */; };
@@ -91,6 +92,7 @@
 		9A81DD22262FA74F00C38F4F /* DBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBViewController.swift; sourceTree = "<group>"; };
 		9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9AC19299264C98D20070004E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		9AC1934E264ECFAA0070004E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/send.caf; sourceTree = "<group>"; };
 		9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTranslationViewController.swift; sourceTree = "<group>"; };
 		9AD32F562645C20400029C14 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9AEA1CFC25E5DAC000C329C8 /* PenPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,6 +196,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		9AC19342264DF9A80070004E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		9AEA1CF325E5DABF00C329C8 = {
 			isa = PBXGroup;
 			children = (
@@ -229,12 +238,12 @@
 				9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */,
 				9A55FE2A26445A470090824E /* TranslateViewController.swift */,
 				9A589E752639D4D700585328 /* UserCell.swift */,
-				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
 				9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */,
 				9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */,
 				9AEA1D2525E5DE6000C329C8 /* Storyboard+Utility .swift */,
 				9AEA1D2625E5DE6000C329C8 /* ViewController+Utility.swift */,
 				9AEA1D0325E5DAC000C329C8 /* ViewController.swift */,
+				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
 				9A589DEB263753F000585328 /* SelectLocationViewController.swift */,
 				9A589DE62637470000585328 /* HomepageViewController.swift */,
 				9A589DE32637469700585328 /* LocationManager.swift */,
@@ -246,6 +255,8 @@
 				9A58368A262A961300DC3451 /* GoogleService-Info.plist */,
 				9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */,
 				9A81DD22262FA74F00C38F4F /* DBViewController.swift */,
+				9AC1934F264ECFAA0070004E /* send.caf */,
+				9AC19342264DF9A80070004E /* Resources */,
 				9A58363F262A2CF400DC3451 /* Translation */,
 			);
 			path = PenPal;
@@ -322,6 +333,7 @@
 				9AEA1D1625E5DE3800C329C8 /* Main.storyboard in Resources */,
 				9A589DCC26371C2000585328 /* FlagsCell.xib in Resources */,
 				9AEA1D0C25E5DAC400C329C8 /* LaunchScreen.storyboard in Resources */,
+				9AC1934D264ECFAA0070004E /* send.caf in Resources */,
 				9A589DC426371BBD00585328 /* DescriptionCell.xib in Resources */,
 				9A589DBD26371B0A00585328 /* NameCell.xib in Resources */,
 				9A589DC726371BF400585328 /* LanguageLabelCell.xib in Resources */,
@@ -423,6 +435,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		9AC1934F264ECFAA0070004E /* send.caf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9AC1934E264ECFAA0070004E /* Base */,
+			);
+			name = send.caf;
+			sourceTree = "<group>";
+		};
 		9AEA1D0A25E5DAC400C329C8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

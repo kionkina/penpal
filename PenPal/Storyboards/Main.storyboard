@@ -75,6 +75,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="imgView" destination="6le-7t-nuS" id="RTz-NX-u87"/>
                                             <outlet property="nameLabel" destination="knS-oG-uKc" id="Tvt-43-QD8"/>
                                         </connections>
                                     </tableViewCell>

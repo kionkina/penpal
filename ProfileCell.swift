@@ -47,7 +47,7 @@ class ProfileCell: UITableViewCell {
     func configure(user: User){
         self.user = user
         
-        self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child("default.png"))
+        self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(user.profilePic))
         
         if user == User.current {
             print("show img edit button")

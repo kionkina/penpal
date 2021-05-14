@@ -103,6 +103,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "\(self.user!.firstName) \(self.user!.lastName)"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none

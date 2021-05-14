@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class UserCell: UICollectionViewCell {
     
@@ -41,6 +42,8 @@ class UserCell: UICollectionViewCell {
         let numFlags = max(self.user!.langToLearn.count, self.user!.langSpoken.count)
         print("numFlags: \(numFlags)")
         let height = ( (numFlags/2) * 30)
+        
+        self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(user.profilePic))
         
         self.spokenStackView.layoutIfNeeded()
         self.learningStackView.layoutIfNeeded()

@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class MessageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var imgView: UIImageView!
     var uid: String?
     
     override func awakeFromNib() {
@@ -17,9 +19,10 @@ class MessageTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func configure(name:String, uid: String){
+    func configure(name:String, uid: String, profilePic: String){
         self.nameLabel.text = name
         self.uid = uid
+        self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(profilePic))
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

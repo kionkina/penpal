@@ -23,7 +23,7 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")! as! MessageTableViewCell
         
         let user = self.users[Array(self.users.keys)[indexPath.row]]
-        cell.configure(name: "\(user!.firstName) \(user!.lastName)", uid: user!.uid)
+        cell.configure(name: "\(user!.firstName) \(user!.lastName)", uid: user!.uid, profilePic: user!.profilePic)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell

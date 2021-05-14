@@ -63,7 +63,7 @@ class ConversationViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "\(self.receiver!.firstName) \(self.receiver!.lastName)"
         self.loadSoundEffect()
 
         member = Member(name: User.current.username, color: .blue)

@@ -21,6 +21,7 @@ class User : NSObject {
     var location: String
     var desc: String
     var conversations: [String: String]
+    var profilePic: String
     var dictValue: [String : Any] {
         return ["firstName" : firstName,
                 "lastName" : lastName,
@@ -29,7 +30,8 @@ class User : NSObject {
                 "langToLearn": langToLearn,
                 "description": desc,
                 "location": location,
-                "conversations": conversations]
+                "conversations": conversations,
+                "profilePic": profilePic]
     }
     
     //Standard User init()
@@ -43,6 +45,7 @@ class User : NSObject {
         self.location = ""
         self.desc = "Polyglot in the making! "
         self.conversations = [String: String]()
+        self.profilePic = "default.png"
         super.init()
     }
     
@@ -56,7 +59,8 @@ class User : NSObject {
             let langToLearn = dict["langToLearn"] as? [String],
             let desc = dict["desc"] != nil ? dict["desc"] as? String : "Polyglot in the making!",
             let location = dict["location"] != nil ? dict["location"] as? String : "",
-            let conversations = dict["conversations"] != nil ? dict["conversations"] as? [String: String] : [String: String]()
+            let conversations = dict["conversations"] != nil ? dict["conversations"] as? [String: String] : [String: String](),
+            let profilePic = dict["profilePic"] != nil ? dict["profilePic"] as? String : "default.png"
             else { return nil }
         self.uid = snapshot.documentID
         self.firstName = firstName
@@ -67,6 +71,7 @@ class User : NSObject {
         self.location = location
         self.desc = desc
         self.conversations = conversations
+        self.profilePic = profilePic
     }
     
     //UserDefaults
@@ -79,7 +84,8 @@ class User : NSObject {
             let langToLearn = aDecoder.decodeObject(forKey: "langToLearn") as? [String],
             let location = aDecoder.decodeObject(forKey: "location") as? String,
             let desc = aDecoder.decodeObject(forKey: "desc") as? String,
-            let conversations = aDecoder.decodeObject(forKey: "conversations") as? [String: String]
+            let conversations = aDecoder.decodeObject(forKey: "conversations") as? [String: String],
+            let profilePic = aDecoder.decodeObject(forKey: "profilePic") as? String
             else { return nil }
         
         self.uid = uid
@@ -91,6 +97,7 @@ class User : NSObject {
         self.location = location
         self.desc = desc
         self.conversations = conversations
+        self.profilePic = profilePic
     }
     
     
@@ -133,6 +140,7 @@ extension User: NSCoding {
         aCoder.encode(location, forKey: "location")
         aCoder.encode(desc, forKey: "desc")
         aCoder.encode(conversations, forKey: "conversations")
+        aCoder.encode(profilePic, forKey: "profilePic")
         
     }
 }
