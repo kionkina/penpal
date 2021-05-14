@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,7 +44,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadUsers(success: @escaping ()->Void ) {
-        print("calling on ", Array(User.current.conversations.keys))
         DBViewController.getUsersByIds(uids:Array(User.current.conversations.keys)) { (users) in
             for user in users {
                 self.users[user.uid] = user
@@ -62,14 +61,13 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.refreshControl = self.refreshControl
         refreshControl.addTarget(self, action: #selector(self.refreshUserData(_:)), for: .valueChanged)
 
+        
         // Do any additional setup after loading the view.
     }
     
     @objc private func refreshUserData(_ sender: Any) {
-        print("in refresh user data")
         self.users.removeAll()
         self.loadUsers {
-            print("reloading!")
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
             

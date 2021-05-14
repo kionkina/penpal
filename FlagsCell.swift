@@ -21,13 +21,8 @@ class FlagsCell: UITableViewCell {
     }
     
     func loadImages(){
-        self.spokenStackView.sizeToFit()
-        self.spokenStackView.layoutIfNeeded()
-        self.learningStackView.sizeToFit()
-        self.learningStackView.layoutIfNeeded()
-        
+    
         learningStackView.translatesAutoresizingMaskIntoConstraints = false
-        print("in load imgs")
         var xcor: Int = self.user!.langSpoken.count == 1 ? 20 : 0
         var ycor: Int = 0
         
@@ -43,7 +38,6 @@ class FlagsCell: UITableViewCell {
             }
             
             imgView.frame = CGRect(x: xcor, y: ycor, width: 40, height: 20)
-            print("CODE", langCode)
             self.setImage(imgView: imgView, from: langData!.imgUrl!)
             spokenStackView.addSubview(imgView)
             

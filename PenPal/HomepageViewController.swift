@@ -26,6 +26,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var users: [User] = []
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Returning count of \(self.users.count)")
         return self.users.count
     }
     
@@ -33,8 +34,8 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         print(self.users[indexPath.row])
         let numFlags = max(self.users[indexPath.row].langToLearn.count, self.users[indexPath.row].langSpoken.count)
         
-        //  (numFlags * 30) + 43 (all the content above stack views) + 24 (spacing between cell border and stackview)
-        let height = 125 + 24 + ( Int(numFlags/2) * 30)
+        //  (all the content above stack views) + spacing between cell border and stackview
+        let height = 125 + 40 + ( Int(numFlags/2) * 30 )
         print("height: \(height)")
         
         
@@ -51,6 +52,15 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         cell.onNameClicked = {
             self.performSegue(withIdentifier: "toUserProfile", sender: cell)
         }
+        
+        cell.alpha = 0
+
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.05 * Double(indexPath.row),
+            animations: {
+                cell.alpha = 1
+        })
         
         return cell
     }
@@ -82,30 +92,29 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         self.users.removeAll()
         loadUsers {
             print("reloading!")
-            self.collectionView.reloadData()
+            
             self.refreshControl.endRefreshing()
+            self.collectionView.reloadData()
             
         }
     }
     
     func viewDidAppear() {
         super.viewDidLoad()
-            loadUsers {
-                print("reloading!")
-                self.collectionView.reloadData()
-            }
     }
     
     func loadUsers(success: @escaping ()->Void) {
         DBViewController.getUsers { (users) in
             print("got users!")
-            print(users)
+            print(users.count)
+            
             for user in users {
                 print("appending")
-                if (user != User.current) {
+                if (user.uid != User.current.uid) {
                     self.users.append(user)
                 }
             }
+            print("going to success")
             success()
         }
     }
