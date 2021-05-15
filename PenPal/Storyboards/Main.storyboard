@@ -51,7 +51,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="6le-7t-nuS">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="6le-7t-nuS">
                                                     <rect key="frame" x="22" y="10" width="51" height="53"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="51" id="2Dn-ix-fOj"/>
@@ -439,7 +439,7 @@
                                                         <constraint firstAttribute="width" constant="90" id="AOz-lK-Jg9"/>
                                                     </constraints>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="55m-Ck-WrF">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="55m-Ck-WrF">
                                                     <rect key="frame" x="34" y="24" width="82" height="78"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="82" id="ENL-HZ-txW"/>
@@ -1188,7 +1188,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0S1-y2-LH9"/>
+        <segue reference="OBc-8f-YH6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="globe" catalog="system" width="128" height="121"/>

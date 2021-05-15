@@ -274,7 +274,7 @@ extension LanguagesViewController: UITableViewDataSource {
                             User.current.langSpoken = spokenLangCodes
                             DBViewController.setSpoken {
                                 print("updating userDefs 1")
-                                User.setCurrent(User.current)
+                                User.setCurrent(User.current, writeToUserDefaults: true)
                                 self.onDoneEditing!()
                         }
                     }
@@ -314,7 +314,7 @@ extension LanguagesViewController: UITableViewDataSource {
                             print("updating userDefs 2")
                             //UserDefaults.standard.setValue(User.current.langToLearn, forKey: "langToLearn")
                             
-                            User.setCurrent(User.current)
+                            User.setCurrent(User.current, writeToUserDefaults: true)
                             self.onDoneEditing!()
                         }
                     }

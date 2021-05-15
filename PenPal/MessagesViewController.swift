@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import FirebaseFirestore
+
+struct convoStruct {
+    var convoId: String
+    var receiver: String
+    var created: Timestamp?
+}
+
 
 class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,15 +22,19 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     private let refreshControl = UIRefreshControl()
     
     var users: [String: User] = [String: User]()
+    var convos = [String: Conversation]()
+    var myConvos = [convoStruct]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.users.keys.count
+        self.myConvos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")! as! MessageTableViewCell
         
-        let user = self.users[Array(self.users.keys)[indexPath.row]]
+        let user = self.users[self.myConvos[indexPath.row].receiver]
+        
+        
         cell.configure(name: "\(user!.firstName) \(user!.lastName)", uid: user!.uid, profilePic: user!.profilePic)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -43,10 +55,33 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
          }
     }
     
+    func loadConversations() {
+        DBViewController.getConvosById(convoIds: Array(User.current.conversations.values)) { (conversations) in
+                self.convos = conversations
+            
+            for user in Array(self.users.keys) {
+                let convoId = User.current.conversations[self.users[user]!.uid]
+                var convo = convoStruct(convoId: "", receiver: "", created: nil)
+                convo.convoId = convoId!
+                convo.receiver = user
+                convo.created = self.convos[convoId!]?.created
+                self.myConvos.append(convo)
+            }
+            print("all convos: ")
+            for convo in self.myConvos {
+                print(convo)
+            }
+            self.myConvos = self.myConvos.sorted(by: {$0.created!.dateValue() > $1.created!.dateValue() })
+            self.tableView.reloadData()
+        }
+        
+    }
+    
     func loadUsers(success: @escaping ()->Void ) {
         DBViewController.getUsersByIds(uids:Array(User.current.conversations.keys)) { (users) in
             for user in users {
                 self.users[user.uid] = user
+                
             }
         success()
         }
@@ -55,9 +90,12 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadUsers( success: {
-            self.tableView.reloadData()
-        })
+        if (User.current.conversations.keys.count > 0) {
+            self.loadUsers( success: {
+                self.loadConversations()
+            })
+        }
+                       
         self.tableView.refreshControl = self.refreshControl
         refreshControl.addTarget(self, action: #selector(self.refreshUserData(_:)), for: .valueChanged)
 
@@ -66,11 +104,14 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc private func refreshUserData(_ sender: Any) {
-        self.users.removeAll()
-        self.loadUsers {
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
-            
+        if (User.current.conversations.keys.count > 0) {
+            self.users.removeAll()
+            self.myConvos.removeAll()
+            self.convos.removeAll()
+            self.loadUsers {
+                self.loadConversations()
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 

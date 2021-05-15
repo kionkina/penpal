@@ -18,7 +18,7 @@ class EditDescriptionViewController: UIViewController {
         if (self.textField.text != User.current.desc) {
             DBViewController.setDescription(newDesc: self.textField.text, success: {
                 User.current.desc = self.textField.text
-                User.setCurrent(User.current)
+                User.setCurrent(User.current, writeToUserDefaults: true)
                 print("set default!")
             })
         }

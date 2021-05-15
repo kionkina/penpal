@@ -139,7 +139,7 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
                 User.current.location = self.selectedCountry
                 DBViewController.setLangAndLocation {
                     //segue
-                    User.setCurrent(User.current)
+                    User.setCurrent(User.current, writeToUserDefaults: true)
                    
                     let initialViewController = UIStoryboard.initialViewController(for: .main)
                     self.view.window?.rootViewController = initialViewController

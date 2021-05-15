@@ -33,6 +33,7 @@ class ProfileCell: UITableViewCell {
         super.awakeFromNib()
         self.editButton.isHidden = true
         self.imgView!.clipsToBounds = true
+        self.imgView.layer.cornerRadius = self.imgView.frame.size.width / 2
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
         tapGesture.delegate = self
         editButton.addGestureRecognizer(tapGesture)

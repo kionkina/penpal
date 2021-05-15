@@ -47,6 +47,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
             withReuseIdentifier: "UserCell",
             for: indexPath) as! UserCell
         print("returning cell")
+        print("of row: ", indexPath.row)
         cell.clearViews()
         cell.configure(user: self.users[indexPath.row])
         cell.onNameClicked = {
@@ -77,6 +78,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did loading")
         loadUsers { [self] in
             self.collectionView.reloadData()
             self.collectionView.refreshControl = self.refreshControl
@@ -93,8 +95,8 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         loadUsers {
             print("reloading!")
             
-            self.refreshControl.endRefreshing()
             self.collectionView.reloadData()
+            self.refreshControl.endRefreshing()
             
         }
     }

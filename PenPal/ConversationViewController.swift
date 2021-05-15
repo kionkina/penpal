@@ -8,6 +8,7 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import FirebaseStorage
 
 import AVFoundation
 import AudioToolbox
@@ -149,7 +150,9 @@ extension ConversationViewController: MessagesDataSource, MessagesLayoutDelegate
         
         let message = allMessages[indexPath.section]
         let color = member.color
-        avatarView.backgroundColor = color
+    
+        
+        avatarView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(message.sender.senderId == User.current.uid ? User.current.profilePic : receiver?.profilePic as! String ))
       }
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {

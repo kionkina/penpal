@@ -16,6 +16,7 @@ class MessageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.imgView.layer.cornerRadius = self.imgView.frame.size.width / 2
         // Initialization code
     }
 

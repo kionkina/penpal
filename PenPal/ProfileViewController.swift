@@ -110,7 +110,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     else {
                         print("Document successfully updated")
                         // then delete the previous photo
-                        if (oldPic != "default.jpeg"){
+                        if (oldPic != "default.png"){
                             let oldProfilePicRef = imgRef.child(oldPic)
                             oldProfilePicRef.delete { error in
                                 if let error = error {

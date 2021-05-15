@@ -190,7 +190,7 @@ class DBViewController: UIViewController {
                     } else {
                         print("Transaction successfully committed!")
                         User.current.conversations[message.receiver] = docId
-                        User.setCurrent(User.current)
+                        User.setCurrent(User.current, writeToUserDefaults: true)
                         return addMessage(convoId: docId, message: message, success: success)
                     }
                }
@@ -204,6 +204,18 @@ class DBViewController: UIViewController {
         db.collection("conversations").document(convoId).collection("messages").order(by: "timestamp", descending: false).getDocuments{ (qs: QuerySnapshot?, err) in
             for doc in qs!.documents {
                 ret.append(Message(snapshot: doc)!)
+            }
+        success(ret)
+        }
+    }
+    
+    
+    static func getConvosById(convoIds: [String], success: @escaping ([String: Conversation])->Void) {
+        let db = Firestore.firestore()
+        var ret = [String: Conversation]()
+        db.collection("conversations").whereField(FieldPath.documentID(), in: convoIds).getDocuments{ (qs: QuerySnapshot?, err) in
+            for doc in qs!.documents {
+                ret[doc.documentID] = Conversation(snapshot: doc, id: doc.documentID)!
             }
         success(ret)
         }
