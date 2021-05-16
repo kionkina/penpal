@@ -26,14 +26,17 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     var myConvos = [convoStruct]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("returning table count")
+
         return self.myConvos.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")! as! MessageTableViewCell
-        print("cell for row at ", indexPath.row)
-        print("my conovs: ", myConvos)
+
         let user = self.users[self.myConvos[indexPath.row].receiver]
         
         
@@ -60,8 +63,6 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     func loadConversations() {
         DBViewController.getConvosById(convoIds: Array(User.current.conversations.values)) { (conversations) in
                 self.convos = conversations
-                print("got convos")
-                print(self.convos)
             
             var tempConvos = [convoStruct]()
             for user in Array(self.users.keys) {
@@ -73,10 +74,6 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
                 tempConvos.append(convo)
             }
             self.myConvos = tempConvos
-            print("all convos: ")
-            for convo in self.myConvos {
-                print(convo)
-            }
             self.myConvos = self.myConvos.sorted(by: {$0.created!.dateValue() > $1.created!.dateValue() })
             self.tableView.reloadData()
         }

@@ -219,10 +219,6 @@ extension LanguagesViewController: UITableViewDataSource {
         cell.configure(name: language.name, imgUrl: language.imgUrl)
         
         print("Setting cell to \(language.selected)")
-        if (language.code == "ar") {
-            print("at ar!!")
-            print(language.selected)
-        }
 
         cell.setSelected(language.selected, animated: false)
         if (language.selected) {

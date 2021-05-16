@@ -172,13 +172,6 @@
 			path = Translation;
 			sourceTree = "<group>";
 		};
-		9A589DE22637467A00585328 /* LocationManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LocationManager;
-			sourceTree = "<group>";
-		};
 		9A589DF0263757E200585328 /* ProfileCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +228,6 @@
 				9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */,
 				9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */,
 				9A589DF0263757E200585328 /* ProfileCells */,
-				9A589DE22637467A00585328 /* LocationManager */,
 				03A2B2B125F62249005239B1 /* Storyboards */,
 				03A2B2AE25F62016005239B1 /* UserAuth */,
 				9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */,

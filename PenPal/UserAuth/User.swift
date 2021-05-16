@@ -86,7 +86,10 @@ class User : NSObject {
             let desc = aDecoder.decodeObject(forKey: "desc") as? String,
             let conversations = aDecoder.decodeObject(forKey: "conversations") as? [String: String],
             let profilePic = aDecoder.decodeObject(forKey: "profilePic") as? String
-            else { return nil }
+            else { print("NIL!")
+            return nil
+            
+        }
         
         self.uid = uid
         self.firstName = firstName

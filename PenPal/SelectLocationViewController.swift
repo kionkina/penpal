@@ -71,10 +71,10 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func deselectPrev() {
-        print("in deselect, prevepath ", self.selectedRow)
+
         if self.selectedRow != -1 {
             let index: Int = self.selectedRow
-            print("index = \(index)")
+
             let prevPath = IndexPath(row: index, section: 0)
             if (tableView.indexPathsForVisibleRows!.contains(prevPath)) {
                 let prevcell = tableView.cellForRow(at: prevPath) as? CountryTableViewCell
@@ -96,14 +96,13 @@ class SelectLocationViewController: UIViewController, UITableViewDelegate, UITab
             
             let cell = tableView.cellForRow(at: indexPath) as? CountryTableViewCell
             cell?.accessoryType = .checkmark
-            print("selecting row \(indexPath.row)")
             self.selectedRow = indexPath.row
             
             let index: Int = searching ? self.searchTerms[indexPath.row] : indexPath.row
             
             self.selectedCountry = LocationManager.shared.allCountries[index].name
-            print("set selected country to \(self.selectedCountry)")
-            print("setting selected to: \(indexPath.row)")
+//            print("set selected country to \(self.selectedCountry)")
+//            print("setting selected to: \(indexPath.row)")
             self.selectedRow = indexPath.row
             //print("set selectedRow to \(self.selectedRow)")
             

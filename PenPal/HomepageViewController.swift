@@ -26,26 +26,25 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     var users: [User] = []
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Returning count of \(self.users.count)")
+
         return self.users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print(self.users[indexPath.row])
+
         let numFlags = max(self.users[indexPath.row].langToLearn.count, self.users[indexPath.row].langSpoken.count)
         
         //  (all the content above stack views) + spacing between cell border and stackview
         let height = 125 + 40 + ( Int(numFlags/2) * 30 )
         
-        return CGSize(width: Int(self.view.frame.size.width), height: height)
+        return CGSize(width: Int(self.view.frame.size.width) - 100, height: height)
         }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(
             withReuseIdentifier: "UserCell",
             for: indexPath) as! UserCell
-        print("returning cell")
-        print("of row: ", indexPath.row)
+
         cell.clearViews()
         cell.configure(user: self.users[indexPath.row])
         cell.onNameClicked = {
@@ -89,7 +88,7 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     @objc private func refreshUserData(_ sender: Any) {
         print("in refresh user data")
-        self.users.removeAll()
+        
         loadUsers {
             print("reloading!")
             
@@ -105,16 +104,12 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func loadUsers(success: @escaping ()->Void) {
         DBViewController.getUsers { (users) in
-            print("got users!")
-            print(users.count)
-            
-            for user in users {
-                print("appending")
-                if (user.uid != User.current.uid) {
-                    self.users.append(user)
-                }
+
+
+            self.users = users.filter { (user) -> Bool in
+                return user.uid != User.current.uid
             }
-            print("going to success")
+
             success()
         }
     }

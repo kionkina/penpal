@@ -44,7 +44,6 @@ class ConversationViewController: MessagesViewController {
     // MARK: - Sound effects
     func loadSoundEffect() {
         if let path = sendPath {
-            print("path: \(path)")
         let fileURL = URL(fileURLWithPath: path, isDirectory: false)
         let error = AudioServicesCreateSystemSoundID(fileURL as CFURL, &soundID)
         if error != kAudioServicesNoError {
@@ -112,7 +111,6 @@ extension ConversationViewController: MessagesDataSource, MessagesLayoutDelegate
     
   func numberOfSections(
     in messagesCollectionView: MessagesCollectionView) -> Int {
-    print("Returning count: ", allMessages.count)
     return allMessages.count
   }
 

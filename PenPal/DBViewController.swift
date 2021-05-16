@@ -232,8 +232,6 @@ class DBViewController: UIViewController {
         var current = curr
         
         if (curr.keys.count == convoIds.count || startIndex > convoIds.count - 1) {
-            print("running success on convos: ", curr)
-            print("of count: ", curr.count)
             success(curr)
         }
         else {

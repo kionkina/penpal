@@ -27,7 +27,6 @@ class UserCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("i've awoken")
         
         self.imgView.layer.cornerRadius = self.imgView.frame.size.width / 2
         self.imgView.clipsToBounds = true
@@ -39,9 +38,8 @@ class UserCell: UICollectionViewCell {
         self.name.setTitle("\(user.firstName) \(user.lastName)", for: .normal) 
         self.location.text = "\(user.location)"
         
-        let numFlags = max(self.user!.langToLearn.count, self.user!.langSpoken.count)
-        print("numFlags: \(numFlags)")
-        let height = ( (numFlags/2) * 30)
+        //let numFlags = max(self.user!.langToLearn.count, self.user!.langSpoken.count)
+        //let height = ( (numFlags/2) * 30)
         
         self.imgView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(user.profilePic))
         
@@ -50,9 +48,6 @@ class UserCell: UICollectionViewCell {
         
         //self.spokenStackView.heightAnchor.constraint(equalToConstant: CGFloat(height))
         //self.learningStackView.heightAnchor.constraint(equalToConstant: CGFloat(height))
-        
-        
-        print("height: \(height)")
         
         loadImages()
     }

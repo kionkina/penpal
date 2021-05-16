@@ -32,9 +32,7 @@ class DescriptionCell: UITableViewCell {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(didTapImageView1(_:)))
         gesture.delegate = self
-        print("adding recognizer")
         self.editButton.addGestureRecognizer(gesture)
-        print("added")
         
         // Initialization code
     }

@@ -34,18 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
 extension AppDelegate {
     func configureInitialRootViewController(for window: UIWindow?) {
         let defaults = UserDefaults.standard
         let initialViewController: UIViewController
 
-        if Auth.auth().currentUser != nil,
+        if Auth.auth().currentUser?.uid != nil,
             let userData = defaults.object(forKey: "currentUser") as? Data,
-            let user = try? NSKeyedUnarchiver.unarchivedObject(ofClass: User.self, from: userData ) {
-            
-            //let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
-            
-            
+            //let user = try? NSKeyedUnarchiver.unarchivedObject(ofClass: User.self, from: userData as! Data ) {
+            let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
+      
             User.setCurrent(user)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             initialViewController = storyboard.instantiateViewController(withIdentifier: "tabController")
