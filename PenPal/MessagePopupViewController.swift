@@ -14,10 +14,16 @@ class MessagePopupViewController: UIViewController {
     
     public var onSend: (() -> ())?
     
+    var delegate:MessagePopupDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         // Do any additional setup after loading the view.
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        //tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -29,7 +35,7 @@ class MessagePopupViewController: UIViewController {
         if (self.textField.text!.trimmingCharacters(in: .whitespaces) == "") {
             displayNoChoiceAlert(message: "Empty messages aren't great conversation starters... Try again?")
         } else {
-            self.onSend!()
+            delegate?.onSend(self)
         }
     }
     

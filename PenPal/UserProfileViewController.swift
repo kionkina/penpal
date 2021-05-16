@@ -10,13 +10,22 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+protocol MessagePopupDelegate {
+    // Classes that adopt this protocol MUST define
+    // this method -- and hopefully do something in
+    // that definition.
+    func onSend(_ sender: MessagePopupViewController)
+}
 
-class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessagePopupDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if let destination = segue.destination as? ConversationViewController {
             destination.receiver = self.user
-            destination.convoId = User.current.conversations[user!.uid]
+            print("receiver is:  " , self.user!.uid)
+            print("curr list: ", User.current.conversations)
+            print(User.current.conversations[user!.uid])
+            destination.setId(id: User.current.conversations[user!.uid]!)
          }
     }
     
@@ -27,8 +36,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if indexPath.row == 5 {
         let val = max(User.current.langToLearn.count, User.current.langSpoken.count)
-        print("val times thirty: ")
-        print(val*30)
         return CGFloat(val * 30)
       }
       else {
@@ -109,15 +116,11 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         self.tableView.isScrollEnabled = false
 
-        //nameLabel.text = "\(User.current.firstName) \(User.current.lastName)"
-
-
         tableView.register(LocationCell.nib(), forCellReuseIdentifier: LocationCell.identifier)
         tableView.register(DescriptionCell.nib(), forCellReuseIdentifier: DescriptionCell.identifier)
         tableView.register(NameCell.nib(), forCellReuseIdentifier: NameCell.identifier)
         tableView.register(LanguageLabelCell.nib(), forCellReuseIdentifier: LanguageLabelCell.identifier)
         tableView.register(FlagsCell.nib(), forCellReuseIdentifier: FlagsCell.identifier)
-        //        usernameLabel.text = User.current.username
                 
         authHandle = AuthService.authListener(viewController: self)
     }
@@ -141,19 +144,20 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
             // otherwise send first msg
             let popOverVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "messagePopUp") as! MessagePopupViewController
             self.addChild(popOverVC)
-            print("sending over", self.user!.firstName)
           
             popOverVC.view.frame = self.view.frame
             self.view.addSubview(popOverVC.view)
             popOverVC.didMove(toParent: self)
+            popOverVC.delegate = self
             popOverVC.configure(name: self.user!.firstName)
-            popOverVC.onSend = {
-                self.sendMessage(text: popOverVC.textField.text!) {
-                    popOverVC.view.removeFromSuperview();
-                    self.performSegue(withIdentifier: "sendToMessages", sender: self)
-                    // segue to messages?
-                }
+            
             }
+    }
+    
+    func onSend(_ sender: MessagePopupViewController) {
+        self.sendMessage(text: sender.textField.text!) {
+            sender.view.removeFromSuperview();
+            self.performSegue(withIdentifier: "sendToMessages", sender: self)
         }
     }
     

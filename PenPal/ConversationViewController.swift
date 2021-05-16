@@ -62,20 +62,25 @@ class ConversationViewController: MessagesViewController {
       AudioServicesPlaySystemSound(soundID)
     }
     
+    func setId(id: String) {
+        self.convoId = id
+        self.loadMessages {
+            self.messagesCollectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "\(self.receiver!.firstName) \(self.receiver!.lastName)"
         self.loadSoundEffect()
-
+        
         member = Member(name: User.current.username, color: .blue)
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        self.loadMessages {
-            self.messagesCollectionView.reloadData()
-        }
+       
 
         
         // Do any additional setup after loading the view.

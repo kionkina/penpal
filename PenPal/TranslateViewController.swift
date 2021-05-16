@@ -56,12 +56,43 @@ class TranslateViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    // MARK: - Keyboard
+    @objc override func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            // Only change frame for search fields
+            if !(self.textField.isFirstResponder) {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= (keyboardSize.height / 2 )
+                }
+            }
+        }
+    }
+
+    @objc override func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadLanguages()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+
+           view.addGestureRecognizer(tap)
+          
+        
         
         // Do any additional setup after loading the viekloi.lw.
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -289,6 +320,10 @@ func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     }
 }
 
+    
+    
 }
+
+
 
 

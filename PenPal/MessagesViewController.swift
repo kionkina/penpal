@@ -26,12 +26,14 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     var myConvos = [convoStruct]()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.myConvos.count
+        print("returning table count")
+        return self.myConvos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell")! as! MessageTableViewCell
-        
+        print("cell for row at ", indexPath.row)
+        print("my conovs: ", myConvos)
         let user = self.users[self.myConvos[indexPath.row].receiver]
         
         
@@ -50,7 +52,7 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
          if let destination = segue.destination as? ConversationViewController {
             let penPalUid = (self.tableView.cellForRow(at:  tableView.indexPathForSelectedRow!) as! MessageTableViewCell).uid!
             destination.receiver = self.users[penPalUid]
-            destination.convoId = User.current.conversations[penPalUid]
+            destination.setId(id: User.current.conversations[penPalUid]!)
             
          }
     }
@@ -58,15 +60,19 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
     func loadConversations() {
         DBViewController.getConvosById(convoIds: Array(User.current.conversations.values)) { (conversations) in
                 self.convos = conversations
+                print("got convos")
+                print(self.convos)
             
+            var tempConvos = [convoStruct]()
             for user in Array(self.users.keys) {
                 let convoId = User.current.conversations[self.users[user]!.uid]
                 var convo = convoStruct(convoId: "", receiver: "", created: nil)
                 convo.convoId = convoId!
                 convo.receiver = user
                 convo.created = self.convos[convoId!]?.created
-                self.myConvos.append(convo)
+                tempConvos.append(convo)
             }
+            self.myConvos = tempConvos
             print("all convos: ")
             for convo in self.myConvos {
                 print(convo)
@@ -76,6 +82,7 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
         }
         
     }
+    
     
     func loadUsers(success: @escaping ()->Void ) {
         DBViewController.getUsersByIds(uids:Array(User.current.conversations.keys)) { (users) in
@@ -98,20 +105,21 @@ class ViewMessagesViewController: UIViewController, UITableViewDelegate, UITable
                        
         self.tableView.refreshControl = self.refreshControl
         refreshControl.addTarget(self, action: #selector(self.refreshUserData(_:)), for: .valueChanged)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 
-        
-        // Do any additional setup after loading the view.
     }
     
     @objc private func refreshUserData(_ sender: Any) {
         if (User.current.conversations.keys.count > 0) {
-            self.users.removeAll()
-            self.myConvos.removeAll()
-            self.convos.removeAll()
-            self.loadUsers {
+           // self.users.removeAll()
+            //self.myConvos.removeAll()
+            //self.convos.removeAll()
+            print("calling load users//")
+            self.loadUsers(success:  {
                 self.loadConversations()
                 self.refreshControl.endRefreshing()
-            }
+        })
         }
     }
 

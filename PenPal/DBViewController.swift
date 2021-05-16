@@ -107,8 +107,6 @@ class DBViewController: UIViewController {
         
        
         var ret: [User] = []
-        print("looking for users who's langSpoken has \(User.current.langToLearn)")
-        print("and their toLearn is in \(User.current.langSpoken)")
         
         userRef.whereField("langSpoken", arrayContainsAny: User.current.langToLearn).getDocuments { (snapshot, _: Error?) in
  
@@ -130,17 +128,36 @@ class DBViewController: UIViewController {
   
     }
     
-    static func getUsersByIds(uids: [String], success: @escaping (([User]) -> Void)) {
+    // Firestore has a limit of 10 for the in query, so I use a handler and recursive calls
+    static func userHelper(uids: [String], curr: [User], startIndex: Int, success: @escaping ([User])->Void) {
+
         let db = Firestore.firestore()
-        let userRef = db.collection("users")
-        var ret = [User]()
+        var current = curr
         
-        userRef.whereField(FieldPath.documentID(), in: uids).getDocuments { (qs: QuerySnapshot?, _: Error?) in
-            for doc in qs!.documents {
-                ret.append(User(snapshot: doc)!)
-            }
-            success(ret)
+        if (curr.count >= uids.count || startIndex > uids.count - 1) {
+            success(curr)
         }
+        else {
+            var endIndex = startIndex + 10
+            if (uids.count - startIndex < 10) {
+                endIndex = uids.count
+            }
+            
+            let temp = Array(uids[startIndex..<(endIndex)])
+
+            db.collection("users").whereField(FieldPath.documentID(), in: temp).getDocuments{ (qs: QuerySnapshot?, err) in
+                for doc in qs!.documents {
+                    current.append(User(snapshot: doc)!)
+                }
+                self.userHelper(uids: uids, curr: current, startIndex: startIndex + 10, success: success)
+            }
+        }
+    }
+    
+    
+    static func getUsersByIds(uids: [String], success: @escaping (([User]) -> Void)) {
+        userHelper(uids: uids, curr: [User](), startIndex: 0, success: success)
+    
         
     }
     
@@ -209,16 +226,38 @@ class DBViewController: UIViewController {
         }
     }
     
+    static func convosHelper(convoIds: [String], curr: [String: Conversation], startIndex: Int, success: @escaping ([String: Conversation])->Void) {
+        
+        let db = Firestore.firestore()
+        var current = curr
+        
+        if (curr.keys.count == convoIds.count || startIndex > convoIds.count - 1) {
+            print("running success on convos: ", curr)
+            print("of count: ", curr.count)
+            success(curr)
+        }
+        else {
+            var endIndex = startIndex + 10
+            if (convoIds.count - startIndex < 10) {
+                endIndex = convoIds.count
+            }
+            
+            let temp = Array(convoIds[startIndex..<(endIndex)])
+            
+            db.collection("conversations").whereField(FieldPath.documentID(), in: temp).getDocuments{ (qs: QuerySnapshot?, err) in
+                for doc in qs!.documents {
+                    current[doc.documentID] = Conversation(snapshot: doc, id: doc.documentID)!
+                }
+                self.convosHelper(convoIds: convoIds, curr: current, startIndex: startIndex + 10, success: success)
+                
+            }
+        }
+    }
     
     static func getConvosById(convoIds: [String], success: @escaping ([String: Conversation])->Void) {
-        let db = Firestore.firestore()
-        var ret = [String: Conversation]()
-        db.collection("conversations").whereField(FieldPath.documentID(), in: convoIds).getDocuments{ (qs: QuerySnapshot?, err) in
-            for doc in qs!.documents {
-                ret[doc.documentID] = Conversation(snapshot: doc, id: doc.documentID)!
-            }
-        success(ret)
-        }
+        
+        convosHelper(convoIds: convoIds, curr: [String: Conversation](), startIndex: 0, success: success)
+        
     }
     
 }
