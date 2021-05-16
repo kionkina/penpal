@@ -23,9 +23,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.onDoneEditing = {
 
                         //update DB and close it
-                        print("closing")
-                        destinationVC.dismiss(animated: true, completion: {self.tableView.reloadData()})
-                       
+                        self.navigationController?.popViewController(animated: true)
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -34,11 +33,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.pageType = "selectingLanguagesToLearn"
                     destinationVC.onDoneEditing = {
                         //update DB and close it
-                        print("closing")
-                        destinationVC.dismiss(animated: true, completion: {self.tableView.reloadData()})
-                        
-
-                        //update DB and close it
+                        self.navigationController?.popViewController(animated: true)
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -47,11 +43,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.onDoneEditing = {
                         //update DB and close it
                         print("closing")
-                        destinationVC.dismiss(animated: true, completion: {
-                            self.tableView.reloadData()
-                        })
-                        
-                        //update DB and close it
+                        self.navigationController?.popViewController(animated: true)
+                        self.tableView.reloadData()
                     }
                 }
             }
@@ -62,9 +55,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destinationVC.onDoneEditing = {
                         //update DB and close it
                         print("closing")
-                        destinationVC.dismiss(animated: true, completion: {
-                            self.tableView.reloadData()
-                        })
+                        self.navigationController?.popViewController(animated: true)
+                        self.tableView.reloadData()
                         //update DB and close it
                     }
                 }
@@ -81,8 +73,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
       if indexPath.row == 5 {
         let val = max(User.current.langToLearn.count, User.current.langSpoken.count)
-        print("val times thirty: ")
-        print(val*30)
         return CGFloat(val * 30)
       }
       else {
@@ -93,7 +83,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func updatePfp(imgUrl: URL, success: @escaping() -> Void) {
         let db = Firestore.firestore()
         let imageID:String = UUID().uuidString
-        print("db generated: ", imageID)
         
         let imgRef = Storage.storage().reference().child("profilephotos")
         let oldPic = User.current.profilePic
@@ -153,7 +142,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
                 //do stuff
                 cell.onEditPfpClicked = {
-                    print("TODO")
+
                     let imagePicker = UIImagePickerController()
                       imagePicker.sourceType = .photoLibrary
                       imagePicker.delegate = self
@@ -227,9 +216,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("profile view did load")
-        print("spoken: \(User.current.langSpoken)")
-        print("toLearn: \(User.current.langToLearn)")
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none

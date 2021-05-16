@@ -36,8 +36,6 @@ class HomepageViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         //  (all the content above stack views) + spacing between cell border and stackview
         let height = 125 + 40 + ( Int(numFlags/2) * 30 )
-        print("height: \(height)")
-        
         
         return CGSize(width: Int(self.view.frame.size.width), height: height)
         }

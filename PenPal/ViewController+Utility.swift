@@ -20,8 +20,8 @@ extension UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        view.alpha = 0.9
-        view.backgroundColor = UIColor.gray
+        //view.alpha = 0.9
+        view.backgroundColor =  UIColor.lightGray
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height

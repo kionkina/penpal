@@ -22,9 +22,6 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if let destination = segue.destination as? ConversationViewController {
             destination.receiver = self.user
-            print("receiver is:  " , self.user!.uid)
-            print("curr list: ", User.current.conversations)
-            print(User.current.conversations[user!.uid])
             destination.setId(id: User.current.conversations[user!.uid]!)
          }
     }

@@ -64,7 +64,6 @@ class UserCell: UICollectionViewCell {
         self.learningStackView.layoutIfNeeded()
         
         learningStackView.translatesAutoresizingMaskIntoConstraints = false
-        print("in load imgs")
         var xcor: Int = self.user?.langSpoken.count == 1 ? 20 : 0
         var ycor: Int = 0
         

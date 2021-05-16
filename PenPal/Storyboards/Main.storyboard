@@ -247,16 +247,12 @@
                                     <constraint firstAttribute="bottom" secondItem="MxX-Df-eTb" secondAttribute="bottom" id="910-cB-Drh"/>
                                     <constraint firstItem="EsS-my-IX2" firstAttribute="top" secondItem="Qfa-De-CQ1" secondAttribute="bottom" id="Bzf-Hw-7Hl"/>
                                     <constraint firstItem="MxX-Df-eTb" firstAttribute="top" secondItem="EsS-my-IX2" secondAttribute="bottom" id="F2f-aT-zIv"/>
-                                    <constraint firstItem="Qfa-De-CQ1" firstAttribute="leading" secondItem="hR9-wp-d7H" secondAttribute="leading" id="Sf0-NS-515"/>
                                     <constraint firstAttribute="trailing" secondItem="Qfa-De-CQ1" secondAttribute="trailing" id="Ugh-Xw-vkq"/>
                                     <constraint firstItem="MxX-Df-eTb" firstAttribute="leading" secondItem="hR9-wp-d7H" secondAttribute="leading" id="Whe-Ba-O8X"/>
                                     <constraint firstItem="Qfa-De-CQ1" firstAttribute="leading" secondItem="hR9-wp-d7H" secondAttribute="leading" id="XnW-aH-XhK"/>
-                                    <constraint firstItem="Qfa-De-CQ1" firstAttribute="top" secondItem="hR9-wp-d7H" secondAttribute="top" id="XoT-PR-BMH"/>
                                     <constraint firstItem="MxX-Df-eTb" firstAttribute="leading" secondItem="hR9-wp-d7H" secondAttribute="leading" id="Zdd-hK-eBk"/>
                                     <constraint firstItem="Qfa-De-CQ1" firstAttribute="top" secondItem="hR9-wp-d7H" secondAttribute="top" id="aqt-qd-fgB"/>
                                     <constraint firstAttribute="bottom" secondItem="MxX-Df-eTb" secondAttribute="bottom" id="cJu-JD-CxS"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qfa-De-CQ1" secondAttribute="trailing" id="dXt-l4-aVe"/>
-                                    <constraint firstItem="EsS-my-IX2" firstAttribute="top" secondItem="Qfa-De-CQ1" secondAttribute="bottom" id="kd9-rm-DBq"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clQ-uJ-VJp">
@@ -465,7 +461,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b4E-Ak-Lz8">
-                                                    <rect key="frame" x="166" y="125" width="90" height="141"/>
+                                                    <rect key="frame" x="166" y="128" width="90" height="138"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="Q1z-T0-lkQ"/>
                                                     </constraints>
@@ -484,7 +480,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEp-5E-Rg6">
-                                                    <rect key="frame" x="152" y="75" width="41.5" height="20.5"/>
+                                                    <rect key="frame" x="152" y="78" width="41.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -500,7 +496,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7t3-Qt-Vdg">
-                                                    <rect key="frame" x="184" y="110" width="44" height="16"/>
+                                                    <rect key="frame" x="184" y="113" width="44" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="Ykj-tM-43T"/>
                                                         <constraint firstAttribute="width" constant="44" id="ZY0-7q-fmz"/>
@@ -515,7 +511,8 @@
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK5-5T-fsu">
-                                                    <rect key="frame" x="124" y="37" width="46" height="30"/>
+                                                    <rect key="frame" x="124" y="37" width="51" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
                                                         <action selector="nameClicked" destination="3qP-aB-RYS" eventType="touchUpInside" id="HZT-0O-NOr"/>
