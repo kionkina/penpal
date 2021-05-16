@@ -46,7 +46,6 @@
 		9AEA1D0925E5DAC400C329C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0825E5DAC400C329C8 /* Assets.xcassets */; };
 		9AEA1D0C25E5DAC400C329C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D0A25E5DAC400C329C8 /* LaunchScreen.storyboard */; };
 		9AEA1D1625E5DE3800C329C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D1525E5DE3800C329C8 /* Main.storyboard */; };
-		9AEA1D1925E5DE3E00C329C8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1D1825E5DE3D00C329C8 /* Login.storyboard */; };
 		9AEA1D1C25E5DE4F00C329C8 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D1B25E5DE4F00C329C8 /* CreateUserViewController.swift */; };
 		9AEA1D2125E5DE5500C329C8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D1E25E5DE5500C329C8 /* LoginViewController.swift */; };
 		9AEA1D2225E5DE5500C329C8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */; };
@@ -56,6 +55,7 @@
 		9AEA1D2B25E5DE6800C329C8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D2A25E5DE6800C329C8 /* User.swift */; };
 		9AEA1D2F25E5DE7200C329C8 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D2D25E5DE7200C329C8 /* UserService.swift */; };
 		9AEA1D3025E5DE7200C329C8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1D2E25E5DE7200C329C8 /* AuthService.swift */; };
+		9AF1ABFF26510920004BBEA6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AF1ABFE2651091F004BBEA6 /* Login.storyboard */; };
 		B9BBF907C740ACAD3D6CF6A9 /* Pods_PenPal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2675014E2386217EA5910D2F /* Pods_PenPal.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +104,6 @@
 		9AEA1D0B25E5DAC400C329C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AEA1D0D25E5DAC400C329C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AEA1D1525E5DE3800C329C8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		9AEA1D1825E5DE3D00C329C8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9AEA1D1B25E5DE4F00C329C8 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		9AEA1D1E25E5DE5500C329C8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		9AEA1D2A25E5DE6800C329C8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9AEA1D2D25E5DE7200C329C8 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9AEA1D2E25E5DE7200C329C8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		9AF1ABFE2651091F004BBEA6 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B2CD616A923D87988BE08962 /* Pods-Meditapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meditapp.release.xcconfig"; path = "Target Support Files/Pods-Meditapp/Pods-Meditapp.release.xcconfig"; sourceTree = "<group>"; };
 		BEE27369E814AADE44D03C86 /* Pods-Meditapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meditapp.debug.xcconfig"; path = "Target Support Files/Pods-Meditapp/Pods-Meditapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,7 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEA1D1525E5DE3800C329C8 /* Main.storyboard */,
-				9AEA1D1825E5DE3D00C329C8 /* Login.storyboard */,
+				9AF1ABFE2651091F004BBEA6 /* Login.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -332,7 +332,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AEA1D1925E5DE3E00C329C8 /* Login.storyboard in Resources */,
 				9AEA1D1625E5DE3800C329C8 /* Main.storyboard in Resources */,
 				9A589DCC26371C2000585328 /* FlagsCell.xib in Resources */,
 				9AEA1D0C25E5DAC400C329C8 /* LaunchScreen.storyboard in Resources */,
@@ -343,6 +342,7 @@
 				9AEA1D0925E5DAC400C329C8 /* Assets.xcassets in Resources */,
 				9A589DC026371B6C00585328 /* LocationCell.xib in Resources */,
 				9A58368B262A961400DC3451 /* GoogleService-Info.plist in Resources */,
+				9AF1ABFF26510920004BBEA6 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

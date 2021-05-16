@@ -73,6 +73,8 @@ class ConversationViewController: MessagesViewController {
         super.viewDidLoad()
         self.title = "\(self.receiver!.firstName) \(self.receiver!.lastName)"
         self.loadSoundEffect()
+
+        
         
         member = Member(name: User.current.username, color: .blue)
         messageInputBar.delegate = self
@@ -154,8 +156,6 @@ extension ConversationViewController: MessagesDataSource, MessagesLayoutDelegate
         in messagesCollectionView: MessagesCollectionView) {
         
         let message = allMessages[indexPath.section]
-        let color = member.color
-    
         
         avatarView.sd_setImage(with: Storage.storage().reference().child("profilephotos").child(message.sender.senderId == User.current.uid ? User.current.profilePic : receiver?.profilePic as! String ))
       }

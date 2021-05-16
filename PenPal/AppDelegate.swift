@@ -41,7 +41,9 @@ extension AppDelegate {
 
         if Auth.auth().currentUser != nil,
             let userData = defaults.object(forKey: "currentUser") as? Data,
-            let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
+            let user = try? NSKeyedUnarchiver.unarchivedObject(ofClass: User.self, from: userData ) {
+            
+            //let user = NSKeyedUnarchiver.unarchiveObject(with: userData) as? User {
             
             
             User.setCurrent(user)

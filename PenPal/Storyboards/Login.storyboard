@@ -246,9 +246,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="globe" translatesAutoresizingMaskIntoConstraints="NO" id="Wiy-7V-zqW">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="globe" translatesAutoresizingMaskIntoConstraints="NO" id="Wiy-7V-zqW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCX-8l-hd2">
@@ -262,7 +261,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXA-MS-Rha">
                                 <rect key="frame" x="36" y="198.5" width="303" height="270"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gyy-WT-xHt">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gyy-WT-xHt">
                                         <rect key="frame" x="20" y="9" width="263" height="250"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="F2t-T5-wEL">
@@ -366,23 +365,29 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="gyy-WT-xHt" firstAttribute="top" secondItem="BXA-MS-Rha" secondAttribute="top" constant="9" id="Crf-LK-O0g"/>
                                     <constraint firstAttribute="trailing" secondItem="gyy-WT-xHt" secondAttribute="trailing" constant="20" id="NWJ-Pl-bas"/>
                                     <constraint firstItem="gyy-WT-xHt" firstAttribute="leading" secondItem="BXA-MS-Rha" secondAttribute="leading" constant="20" id="P9k-eI-hgT"/>
                                     <constraint firstItem="gyy-WT-xHt" firstAttribute="centerX" secondItem="BXA-MS-Rha" secondAttribute="centerX" id="Zxr-I1-LhJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="gyy-WT-xHt" secondAttribute="bottom" constant="10" id="fxt-tc-L6e"/>
-                                    <constraint firstItem="gyy-WT-xHt" firstAttribute="top" secondItem="BXA-MS-Rha" secondAttribute="top" constant="10" id="oMt-dT-4RN"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Wiy-7V-zqW" firstAttribute="top" secondItem="mpa-iN-WOB" secondAttribute="bottom" id="15G-NF-dwB"/>
+                            <constraint firstItem="BXA-MS-Rha" firstAttribute="centerY" secondItem="Wiy-7V-zqW" secondAttribute="centerY" id="7hT-BZ-WGM"/>
                             <constraint firstItem="BXA-MS-Rha" firstAttribute="centerY" secondItem="KqW-vQ-5eI" secondAttribute="centerY" id="9Rj-RK-oSk"/>
+                            <constraint firstAttribute="trailing" secondItem="Wiy-7V-zqW" secondAttribute="trailing" id="FUM-2Y-54U"/>
                             <constraint firstItem="BXA-MS-Rha" firstAttribute="centerX" secondItem="KqW-vQ-5eI" secondAttribute="centerX" id="OoQ-OL-gKc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BXA-MS-Rha" secondAttribute="trailing" constant="20" id="VC2-h5-G9b"/>
                             <constraint firstItem="BXA-MS-Rha" firstAttribute="centerX" secondItem="KqW-vQ-5eI" secondAttribute="centerX" id="WFp-of-Zef"/>
+                            <constraint firstItem="BXA-MS-Rha" firstAttribute="centerX" secondItem="Wiy-7V-zqW" secondAttribute="centerX" id="e6v-em-SJh"/>
                             <constraint firstItem="OCX-8l-hd2" firstAttribute="top" secondItem="mpa-iN-WOB" secondAttribute="bottom" constant="20" id="eiO-p1-rZW"/>
+                            <constraint firstItem="oha-cG-wXT" firstAttribute="top" secondItem="Wiy-7V-zqW" secondAttribute="bottom" id="f3d-Dd-sJk"/>
                             <constraint firstItem="BXA-MS-Rha" firstAttribute="leading" secondItem="KqW-vQ-5eI" secondAttribute="leadingMargin" constant="20" id="f90-l1-eBB"/>
                             <constraint firstItem="OCX-8l-hd2" firstAttribute="leading" secondItem="KqW-vQ-5eI" secondAttribute="leadingMargin" constant="20" id="h3e-lS-gZl"/>
+                            <constraint firstItem="oha-cG-wXT" firstAttribute="top" secondItem="BXA-MS-Rha" secondAttribute="bottom" constant="198.5" id="xMR-hU-fhX"/>
+                            <constraint firstItem="Wiy-7V-zqW" firstAttribute="leading" secondItem="KqW-vQ-5eI" secondAttribute="leading" id="xlq-Vc-60v"/>
                         </constraints>
                     </view>
                     <connections>
