@@ -63,11 +63,11 @@
 		15CF46525864E0099591CAD3 /* Pods-PenPal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PenPal.release.xcconfig"; path = "Target Support Files/Pods-PenPal/Pods-PenPal.release.xcconfig"; sourceTree = "<group>"; };
 		2675014E2386217EA5910D2F /* Pods_PenPal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PenPal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		495E59D3AB55AEE6CC16DF80 /* Pods-PenPal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PenPal.debug.xcconfig"; path = "Target Support Files/Pods-PenPal/Pods-PenPal.debug.xcconfig"; sourceTree = "<group>"; };
-		9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditDescriptionViewController.swift; path = Storyboards/EditDescriptionViewController.swift; sourceTree = "<group>"; };
-		9A55FE2A26445A470090824E /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslateViewController.swift; path = PenPal/TranslateViewController.swift; sourceTree = SOURCE_ROOT; };
+		9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionViewController.swift; sourceTree = "<group>"; };
+		9A55FE2A26445A470090824E /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslateViewController.swift; path = PenPal/Controllers/TranslateViewController.swift; sourceTree = SOURCE_ROOT; };
 		9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateChoiceTableViewCell.swift; sourceTree = "<group>"; };
-		9A583640262A2D1900DC3451 /* TranslationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationManager.swift; path = ../../../../../Downloads/GoogleCloudTranslateStarter/Translate/Core/TranslationManager.swift; sourceTree = "<group>"; };
-		9A583641262A2D1900DC3451 /* TranslationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationAPI.swift; path = ../../../../../Downloads/GoogleCloudTranslateStarter/Translate/Core/TranslationAPI.swift; sourceTree = "<group>"; };
+		9A583640262A2D1900DC3451 /* TranslationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationManager.swift; sourceTree = "<group>"; };
+		9A583641262A2D1900DC3451 /* TranslationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationAPI.swift; sourceTree = "<group>"; };
 		9A583645262A2EE000DC3451 /* LanguagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		9A58364C262A2EEF00DC3451 /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		9A58368A262A961300DC3451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -83,10 +83,10 @@
 		9A589DDC26371F8400585328 /* LanguageLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageLabelCell.swift; sourceTree = "<group>"; };
 		9A589DDF26371FE500585328 /* FlagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagsCell.swift; sourceTree = "<group>"; };
 		9A589DE32637469700585328 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		9A589DE62637470000585328 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomepageViewController.swift; path = PenPal/HomepageViewController.swift; sourceTree = SOURCE_ROOT; };
+		9A589DE62637470000585328 /* HomepageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomepageViewController.swift; path = PenPal/Controllers/HomepageViewController.swift; sourceTree = SOURCE_ROOT; };
 		9A589DEB263753F000585328 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		9A589DF12637583500585328 /* CountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryTableViewCell.swift; sourceTree = "<group>"; };
-		9A589E752639D4D700585328 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = PenPal/UserCell.swift; sourceTree = SOURCE_ROOT; };
+		9A589E752639D4D700585328 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCell.swift; path = PenPal/Views/UserCell.swift; sourceTree = SOURCE_ROOT; };
 		9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePopupViewController.swift; sourceTree = "<group>"; };
 		9A630F9E264C70FA002B94AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,7 +138,6 @@
 				9AEA1D1B25E5DE4F00C329C8 /* CreateUserViewController.swift */,
 				9AEA1D2025E5DE5500C329C8 /* ForgotPasswordViewController.swift */,
 				9AEA1D2D25E5DE7200C329C8 /* UserService.swift */,
-				9AEA1D2A25E5DE6800C329C8 /* User.swift */,
 			);
 			path = UserAuth;
 			sourceTree = "<group>";
@@ -172,9 +171,14 @@
 			path = Translation;
 			sourceTree = "<group>";
 		};
-		9A589DF0263757E200585328 /* ProfileCells */ = {
+		9A72594F26518D1F00BD826E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9A589DF12637583500585328 /* CountryTableViewCell.swift */,
+				9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */,
+				9A589E752639D4D700585328 /* UserCell.swift */,
+				9A58364C262A2EEF00DC3451 /* LanguageCell.swift */,
+				9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */,
 				9A589DBC26371B0A00585328 /* NameCell.xib */,
 				9A589DD626371F5600585328 /* NameCell.swift */,
 				9A589DC326371BBD00585328 /* DescriptionCell.xib */,
@@ -187,15 +191,47 @@
 				9A589DBF26371B6C00585328 /* LocationCell.xib */,
 				9A589DD226371F4B00585328 /* LocationCell.swift */,
 			);
-			name = ProfileCells;
-			path = ..;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		9AC19342264DF9A80070004E /* Resources */ = {
+		9A72595126518D8900BD826E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9AEA1D2625E5DE6000C329C8 /* ViewController+Utility.swift */,
+				9AEA1D0325E5DAC000C329C8 /* ViewController.swift */,
+				9A583645262A2EE000DC3451 /* LanguagesViewController.swift */,
+				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
+				9A589DEB263753F000585328 /* SelectLocationViewController.swift */,
+				9A589DE62637470000585328 /* HomepageViewController.swift */,
+				9A55FE2A26445A470090824E /* TranslateViewController.swift */,
+				9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */,
+				9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */,
+				9AC19299264C98D20070004E /* ConversationViewController.swift */,
+				9AD32F562645C20400029C14 /* MessagesViewController.swift */,
+				9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */,
+				9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */,
 			);
-			path = Resources;
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9A72595426518DB900BD826E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A630F9E264C70FA002B94AC /* Message.swift */,
+				9AC19353265039390070004E /* Conversation.swift */,
+				9AEA1D2A25E5DE6800C329C8 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9A72595726518E1D00BD826E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9A589DE32637469700585328 /* LocationManager.swift */,
+				9A81DD22262FA74F00C38F4F /* DBViewController.swift */,
+				9A58363F262A2CF400DC3451 /* Translation */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		9AEA1CF325E5DABF00C329C8 = {
@@ -219,40 +255,19 @@
 		9AEA1CFE25E5DAC000C329C8 /* PenPal */ = {
 			isa = PBXGroup;
 			children = (
-				9A630F9E264C70FA002B94AC /* Message.swift */,
-				9AC19353265039390070004E /* Conversation.swift */,
-				9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */,
-				9AC19299264C98D20070004E /* ConversationViewController.swift */,
-				9AD32F562645C20400029C14 /* MessagesViewController.swift */,
-				9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */,
-				9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */,
-				9A55FDF22641C0340090824E /* EditDescriptionViewController.swift */,
-				9A589DF0263757E200585328 /* ProfileCells */,
-				03A2B2B125F62249005239B1 /* Storyboards */,
-				03A2B2AE25F62016005239B1 /* UserAuth */,
 				9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */,
-				9A55FE2A26445A470090824E /* TranslateViewController.swift */,
-				9A589E752639D4D700585328 /* UserCell.swift */,
-				9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */,
-				9A630F9A264C58C0002B94AC /* MessagePopupViewController.swift */,
 				9AEA1D2525E5DE6000C329C8 /* Storyboard+Utility .swift */,
-				9AEA1D2625E5DE6000C329C8 /* ViewController+Utility.swift */,
-				9AEA1D0325E5DAC000C329C8 /* ViewController.swift */,
-				9AEA1D1F25E5DE5500C329C8 /* ProfileViewController.swift */,
-				9A589DEB263753F000585328 /* SelectLocationViewController.swift */,
-				9A589DE62637470000585328 /* HomepageViewController.swift */,
-				9A589DE32637469700585328 /* LocationManager.swift */,
-				9A589DF12637583500585328 /* CountryTableViewCell.swift */,
 				9AEA1D0825E5DAC400C329C8 /* Assets.xcassets */,
+				9AC1934F264ECFAA0070004E /* send.caf */,
 				9AEA1D0A25E5DAC400C329C8 /* LaunchScreen.storyboard */,
 				9AEA1D0D25E5DAC400C329C8 /* Info.plist */,
-				9A58364C262A2EEF00DC3451 /* LanguageCell.swift */,
 				9A58368A262A961300DC3451 /* GoogleService-Info.plist */,
-				9A583645262A2EE000DC3451 /* LanguagesViewController.swift */,
-				9A81DD22262FA74F00C38F4F /* DBViewController.swift */,
-				9AC1934F264ECFAA0070004E /* send.caf */,
-				9AC19342264DF9A80070004E /* Resources */,
-				9A58363F262A2CF400DC3451 /* Translation */,
+				9A72595726518E1D00BD826E /* Utils */,
+				9A72595426518DB900BD826E /* Models */,
+				9A72595126518D8900BD826E /* Controllers */,
+				9A72594F26518D1F00BD826E /* Views */,
+				03A2B2B125F62249005239B1 /* Storyboards */,
+				03A2B2AE25F62016005239B1 /* UserAuth */,
 			);
 			path = PenPal;
 			sourceTree = "<group>";

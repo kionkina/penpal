@@ -15,13 +15,17 @@ class TranslationManager: NSObject {
     private let apiKey = "AIzaSyBzqtM8K-mVsxaV1gK7RnR8KiEawAJMGqQ"
  
     var sourceLanguageCode: String?
+    var languagenCodes: [String] = [String]()
+    var langugaesDict = [String:TranslationLanguage]()
  
     struct TranslationLanguage {
-        var code: String?
         var name: String?
+        var imgUrl: String?
     }
     
-    var supportedLanguages = [TranslationLanguage]()
+    // supported language codes (includes dialects)
+    var supportedLanguages: [String] = []
+    var allLanguages = [TranslationLanguage]()
     
     private func makeRequest(usingTranslationAPI api: TranslationAPI, urlParams: [String: String], completion: @escaping (_ results: [String: Any]?) -> Void) {
         print("making request")
@@ -34,11 +38,8 @@ class TranslationManager: NSObject {
      
             if let url = components.url {
                 var request = URLRequest(url: url)
-                print("url: ")
-                print(url)
-                print("params: ")
-                print(urlParams)
-                var method = api.getHTTPMethod()
+
+                let method = api.getHTTPMethod()
                 print(method)
                 request.httpMethod = method
      
@@ -50,12 +51,9 @@ class TranslationManager: NSObject {
                     } else {
                         print("waiting for response")
                         if let response = response as? HTTPURLResponse, let results = results {
-                            print("status code: ")
-                            print(response.statusCode)
                             if response.statusCode == 200 || response.statusCode == 201 {
                                 do {
                                     if let resultsDict = try JSONSerialization.jsonObject(with: results, options: JSONSerialization.ReadingOptions.mutableLeaves) as? [String: Any] {
-                                        print(resultsDict)
                                         completion(resultsDict)
                                     }
                                 } catch {
@@ -96,7 +94,31 @@ class TranslationManager: NSObject {
                         languageName = name
                     }
          
-                    self.supportedLanguages.append(TranslationLanguage(code: languageCode, name: languageName))
+                    // Housekeeping
+                    
+                    // First append code to supported languages and add to dict
+                    // this includes dialects for translation
+                    self.supportedLanguages.append(languageCode!)
+
+                    // Add images to all languages except from dialects
+                    if (languageCode != "zh-TW" && languageCode != "zh" && languageCode != "zh-CN"){
+                        self.languagenCodes.append(languageCode!)
+                        let imgUrl = "https://www.unknown.nu/flags/images/\(languageCode!)-100"
+                        self.langugaesDict[languageCode!] = TranslationLanguage(name: languageName!, imgUrl: imgUrl)
+                    }
+                    else if (languageCode == "zh-CN") {
+                        self.languagenCodes.append("zh")
+                        let imgUrl = "https://www.unknown.nu/flags/images/zh-100"
+                        self.langugaesDict["zh"] = TranslationLanguage(name: "Chinese", imgUrl: imgUrl)
+                        self.langugaesDict[languageCode!] = TranslationLanguage(name: languageName!)
+                    }
+                    else if (languageCode == "zh") {
+                        // Add name for zh-tw, zh, zh-CN
+                        self.langugaesDict["zh-CN"] = TranslationLanguage(name: languageName!)
+                    } else {
+                        // Traditional
+                        self.langugaesDict[languageCode!] = TranslationLanguage(name: languageName!)
+                    }
                 }
          
                 completion(true)
@@ -108,35 +130,40 @@ class TranslationManager: NSObject {
         }
     }
     
-    func detectLanguage(forText text: String, completion: @escaping (_ language: String?) -> Void) {
-        let urlParams = ["key": apiKey, "q": text]
-     
-        makeRequest(usingTranslationAPI: .detectLanguage, urlParams: urlParams) { (results) in
-            guard let results = results else { completion(nil); return }
-     
-            if let data = results["data"] as? [String: Any], let detections = data["detections"] as? [[[String: Any]]] {
-                var detectedLanguages = [String]()
-     
-                for detection in detections {
-                    for currentDetection in detection {
-                        if let language = currentDetection["language"] as? String {
-                            detectedLanguages.append(language)
-                        }
-                    }
-                }
-     
-                if detectedLanguages.count > 0 {
-                    self.sourceLanguageCode = detectedLanguages[0]
-                    completion(detectedLanguages[0])
-                } else {
-                    completion(nil)
-                }
-     
-            } else {
-                completion(nil)
-            }
-        }
-    }
+    func translate( textToTranslate: String, sourceLanugage: String, targetLanguage: String, completion: @escaping (_ translations: String?) -> Void) {
+           
+           var urlParams = [String: String]()
+           urlParams["key"] = apiKey
+           urlParams["q"] = textToTranslate
+           urlParams["target"] = targetLanguage
+           urlParams["format"] = "text"
+           
+           
+           makeRequest(usingTranslationAPI: .translate, urlParams: urlParams) { (results) in
+               guard let results = results else { completion(nil); return }
+               
+               if let data = results["data"] as? [String: Any], let translations = data["translations"] as? [[String: Any]] {
+                   var allTranslations = [String]()
+                   print("got results! ")
+                   print(translations)
+                   for translation in translations {
+                       if let translatedText = translation["translatedText"] as? String {
+                           allTranslations.append(translatedText)
+                       }
+                   }
+                   
+                   if allTranslations.count > 0 {
+                       completion(allTranslations[0])
+                   } else {
+                       completion(nil)
+                   }
+                   
+                   
+               } else {
+                   completion(nil)
+               }
+           }
+       }
     
     
     override init() {
