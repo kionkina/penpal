@@ -12,7 +12,7 @@
 		9A55FE38264460750090824E /* TranslateChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */; };
 		9A583642262A2D1900DC3451 /* TranslationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583640262A2D1900DC3451 /* TranslationManager.swift */; };
 		9A583643262A2D1900DC3451 /* TranslationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583641262A2D1900DC3451 /* TranslationAPI.swift */; };
-		9A583646262A2EE000DC3451 /* LanguagesViewController copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */; };
+		9A583646262A2EE000DC3451 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A583645262A2EE000DC3451 /* LanguagesViewController.swift */; };
 		9A58364E262A2EEF00DC3451 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A58364C262A2EEF00DC3451 /* LanguageCell.swift */; };
 		9A58368B262A961400DC3451 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A58368A262A961300DC3451 /* GoogleService-Info.plist */; };
 		9A589DBD26371B0A00585328 /* NameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A589DBC26371B0A00585328 /* NameCell.xib */; };
@@ -38,6 +38,7 @@
 		9A8E0E02263A068100C3CB43 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */; };
 		9AC1929A264C98D20070004E /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC19299264C98D20070004E /* ConversationViewController.swift */; };
 		9AC1934D264ECFAA0070004E /* send.caf in Resources */ = {isa = PBXBuildFile; fileRef = 9AC1934F264ECFAA0070004E /* send.caf */; };
+		9AC193542650393A0070004E /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC19353265039390070004E /* Conversation.swift */; };
 		9AD32F3B26459F6500029C14 /* ShowTranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */; };
 		9AD32F572645C20400029C14 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD32F562645C20400029C14 /* MessagesViewController.swift */; };
 		9AEA1D0025E5DAC000C329C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEA1CFF25E5DAC000C329C8 /* AppDelegate.swift */; };
@@ -67,7 +68,7 @@
 		9A55FE37264460750090824E /* TranslateChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateChoiceTableViewCell.swift; sourceTree = "<group>"; };
 		9A583640262A2D1900DC3451 /* TranslationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationManager.swift; path = ../../../../../Downloads/GoogleCloudTranslateStarter/Translate/Core/TranslationManager.swift; sourceTree = "<group>"; };
 		9A583641262A2D1900DC3451 /* TranslationAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TranslationAPI.swift; path = ../../../../../Downloads/GoogleCloudTranslateStarter/Translate/Core/TranslationAPI.swift; sourceTree = "<group>"; };
-		9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LanguagesViewController copy.swift"; sourceTree = "<group>"; };
+		9A583645262A2EE000DC3451 /* LanguagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
 		9A58364C262A2EEF00DC3451 /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		9A58368A262A961300DC3451 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A589DBC26371B0A00585328 /* NameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameCell.xib; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		9A8E0E01263A068100C3CB43 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		9AC19299264C98D20070004E /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		9AC1934E264ECFAA0070004E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file; name = Base; path = Base.lproj/send.caf; sourceTree = "<group>"; };
+		9AC19353265039390070004E /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		9AD32F3A26459F6500029C14 /* ShowTranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTranslationViewController.swift; sourceTree = "<group>"; };
 		9AD32F562645C20400029C14 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		9AEA1CFC25E5DAC000C329C8 /* PenPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PenPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				9A630F9E264C70FA002B94AC /* Message.swift */,
+				9AC19353265039390070004E /* Conversation.swift */,
 				9A630FA1264C7F98002B94AC /* MessageTableViewCell.swift */,
 				9AC19299264C98D20070004E /* ConversationViewController.swift */,
 				9AD32F562645C20400029C14 /* MessagesViewController.swift */,
@@ -253,7 +256,7 @@
 				9AEA1D0D25E5DAC400C329C8 /* Info.plist */,
 				9A58364C262A2EEF00DC3451 /* LanguageCell.swift */,
 				9A58368A262A961300DC3451 /* GoogleService-Info.plist */,
-				9A583645262A2EE000DC3451 /* LanguagesViewController copy.swift */,
+				9A583645262A2EE000DC3451 /* LanguagesViewController.swift */,
 				9A81DD22262FA74F00C38F4F /* DBViewController.swift */,
 				9AC1934F264ECFAA0070004E /* send.caf */,
 				9AC19342264DF9A80070004E /* Resources */,
@@ -394,7 +397,7 @@
 			files = (
 				9A583643262A2D1900DC3451 /* TranslationAPI.swift in Sources */,
 				9AEA1D0425E5DAC000C329C8 /* ViewController.swift in Sources */,
-				9A583646262A2EE000DC3451 /* LanguagesViewController copy.swift in Sources */,
+				9A583646262A2EE000DC3451 /* LanguagesViewController.swift in Sources */,
 				9A58364E262A2EEF00DC3451 /* LanguageCell.swift in Sources */,
 				9AEA1D2325E5DE5500C329C8 /* ForgotPasswordViewController.swift in Sources */,
 				9A55FE2B26445A480090824E /* TranslateViewController.swift in Sources */,
@@ -402,6 +405,7 @@
 				9AEA1D3025E5DE7200C329C8 /* AuthService.swift in Sources */,
 				9A589DDA26371F7100585328 /* DescriptionCell.swift in Sources */,
 				9AEA1D2825E5DE6000C329C8 /* ViewController+Utility.swift in Sources */,
+				9AC193542650393A0070004E /* Conversation.swift in Sources */,
 				9A589DDD26371F8400585328 /* LanguageLabelCell.swift in Sources */,
 				9A81DD23262FA74F00C38F4F /* DBViewController.swift in Sources */,
 				9AC1929A264C98D20070004E /* ConversationViewController.swift in Sources */,
