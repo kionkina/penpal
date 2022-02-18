@@ -12,7 +12,7 @@ class TranslationManager: NSObject {
  
     static let shared = TranslationManager()
  
-    private let apiKey = "AIzaSyBzqtM8K-mVsxaV1gK7RnR8KiEawAJMGqQ"
+    private let apiKey = "AIzaSyBzqtM8K-mVsxaV1gK7RnR8KiEawAJMGqQ" //key regenerated upon publicization
  
     var sourceLanguageCode: String?
     var languagenCodes: [String] = [String]()
